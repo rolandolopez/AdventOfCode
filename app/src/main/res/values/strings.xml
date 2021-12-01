@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Advent 2021</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Welcome to AOC 2021</string>
+    <string name="pick_a_day">Pick a Day</string>
+    <string name="run_it">Run it!</string>
+
+    <string-array name="days">
+        <item>Select a Day</item>
+        <item>Day 1</item>
+        <item>Day 2</item>
+        <item>Day 3</item>
+        <item>Day 4</item>
+        <item>Day 5</item>
+        <item>Day 6</item>
+        <item>Day 7</item>
+        <item>Day 8</item>
+        <item>Day 9</item>
+        <item>Day 10</item>
+        <item>Day 11</item>
+        <item>Day 12</item>
+        <item>Day 13</item>
+        <item>Day 14</item>
+        <item>Day 15</item>
+        <item>Day 16</item>
+        <item>Day 17</item>
+        <item>Day 18</item>
+        <item>Day 19</item>
+        <item>Day 20</item>
+        <item>Day 21</item>
+        <item>Day 22</item>
+        <item>Day 23</item>
+        <item>Day 24</item>
+        <item>Day 25</item>
+    </string-array>
+</resources>

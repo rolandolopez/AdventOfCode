@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.twelfthnightdj.advent2021.MainActivity">
+
+    <item
+        android:id="@+id/day_1"
+        android:title="Day 1" />
+</menu>
