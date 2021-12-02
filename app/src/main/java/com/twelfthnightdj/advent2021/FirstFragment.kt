@@ -84,11 +84,15 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     fun runDay1() {
-        val day1 = Day1()
-        binding.tvAnswerA.text = day1.partA()
-        binding.tvAnswerB.text = day1.partB()
+        val day = Day1()
+        binding.tvAnswerA.text = day.partA()
+        binding.tvAnswerB.text = day.partB()
     }
-    fun runDay2() {}
+    fun runDay2() {
+        val day = Day2()
+        binding.tvAnswerA.text = day.partA()
+        binding.tvAnswerB.text = day.partB()
+    }
     fun runDay3() {}
     fun runDay4() {}
     fun runDay5() {}

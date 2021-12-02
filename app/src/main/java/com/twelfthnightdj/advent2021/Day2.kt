@@ -1,0 +1,30 @@
+package com.twelfthnightdj.advent2021
+
+import com.twelfthnightdj.advent2021.util.InputHelpers
+
+class Day2 : AocDays() {
+    override fun partA(): String {
+        var horizontal = 0
+        var depth = 0
+        input.forEach {
+            val (command, count) = it.split(" ")
+            when(command) {
+                "forward" -> horizontal += count.toInt()
+                "down" -> depth += count.toInt()
+                "up" -> depth -= count.toInt()
+            }
+        }
+        return (horizontal * depth).toString()
+    }
+
+    val trial =  listOf(
+        "forward 5",
+        "down 5",
+        "forward 8",
+        "up 3",
+        "down 8",
+        "forward 2"
+    )
+
+    val input = InputHelpers.getListOfStringsFromFile("/day02.txt")
+}
