@@ -17,6 +17,24 @@ class Day2 : AocDays() {
         return (horizontal * depth).toString()
     }
 
+    override fun partB(): String {
+        var horizontal = 0
+        var depth = 0
+        var aim = 0
+        input.forEach {
+            val (command, count) = it.split(" ")
+            when (command) {
+                "forward" -> {
+                    horizontal += count.toInt()
+                    depth += (aim * count.toInt())
+                }
+                "down" -> aim += count.toInt()
+                "up" -> aim -= count.toInt()
+            }
+        }
+        return (horizontal * depth).toString()
+    }
+
     val trial =  listOf(
         "forward 5",
         "down 5",
