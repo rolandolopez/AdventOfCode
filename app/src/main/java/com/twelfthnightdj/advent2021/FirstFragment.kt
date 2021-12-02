@@ -52,70 +52,19 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         binding.buttonFirst.setOnClickListener {
             when(daySelected) {
-                1 -> runDay1()
-                2 -> runDay2()
-                3 -> runDay3()
-                4 -> runDay4()
-                5 -> runDay5()
-                6 -> runDay6()
-                7 -> runDay7()
-                8 -> runDay8()
-                9 -> runDay9()
-                10 -> runDay10()
-                11 -> runDay11()
-                12 -> runDay12()
-                13 -> runDay13()
-                14 -> runDay14()
-                15 -> runDay15()
-                16 -> runDay16()
-                17 -> runDay17()
-                18 -> runDay18()
-                19 -> runDay19()
-                20 -> runDay20()
-                21 -> runDay21()
-                22 -> runDay22()
-                23 -> runDay23()
-                24 -> runDay24()
-                25 -> runDay25()
+                1 -> runDay(Day1())
+                2 -> runDay(Day2())
+
                 else -> {}
             }
         }
         binding.daySpinner.setSelection(Calendar.getInstance().get(DAY_OF_MONTH), true)
     }
 
-    fun runDay1() {
-        val day = Day1()
+    private fun runDay(day: AocDays) {
         binding.tvAnswerA.text = day.partA()
         binding.tvAnswerB.text = day.partB()
     }
-    fun runDay2() {
-        val day = Day2()
-        binding.tvAnswerA.text = day.partA()
-        binding.tvAnswerB.text = day.partB()
-    }
-    fun runDay3() {}
-    fun runDay4() {}
-    fun runDay5() {}
-    fun runDay6() {}
-    fun runDay7() {}
-    fun runDay8() {}
-    fun runDay9() {}
-    fun runDay10() {}
-    fun runDay11() {}
-    fun runDay12() {}
-    fun runDay13() {}
-    fun runDay14() {}
-    fun runDay15() {}
-    fun runDay16() {}
-    fun runDay17() {}
-    fun runDay18() {}
-    fun runDay19() {}
-    fun runDay20() {}
-    fun runDay21() {}
-    fun runDay22() {}
-    fun runDay23() {}
-    fun runDay24() {}
-    fun runDay25() {}
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -123,11 +72,8 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-        Log.d("ROLANDO", "item selected pos: $pos id: $id")
         daySelected = pos
     }
 
-    override fun onNothingSelected(p0: AdapterView<*>?) {
-        Log.d("ROLANDO", "Nothing selected")
-    }
+    override fun onNothingSelected(p0: AdapterView<*>?) = Unit
 }
