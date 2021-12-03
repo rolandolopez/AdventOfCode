@@ -1,5 +1,6 @@
 package com.twelfthnightdj.advent2021
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -54,6 +55,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
             when(daySelected) {
                 1 -> runDay(Day1())
                 2 -> runDay(Day2())
+                3 -> runDay(Day3())
 
                 else -> {}
             }
@@ -61,9 +63,14 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
         binding.daySpinner.setSelection(Calendar.getInstance().get(DAY_OF_MONTH), true)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun runDay(day: AocDays) {
-        binding.tvAnswerA.text = day.partA()
-        binding.tvAnswerB.text = day.partB()
+        val partA = day.partA()
+        val partB = day.partB()
+        println("Part A: $partA")
+        println("Part B: $partB")
+        binding.tvAnswerA.text = "Part A: $partA"
+        binding.tvAnswerB.text = "Part B: $partB"
     }
 
     override fun onDestroyView() {
