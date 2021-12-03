@@ -7,107 +7,18 @@ class Day3 : AocDays() {
         return partAHelper(input)
     }
 
-    fun partAHelper(ipt: List<String>): String {
-        val first = ipt.map { it.get(0) }.filter { it.equals('1') }.size
-        val second = ipt.map { it.get(1) }.filter { it.equals('1') }.size
-        val third = ipt.map { it.get(2) }.filter { it.equals('1') }.size
-        val fourth = ipt.map { it.get(3) }.filter { it.equals('1') }.size
-        val fifth = ipt.map { it.get(4) }.filter { it.equals('1') }.size
-        val sixth = ipt.map { it.get(5) }.filter { it.equals('1') }.size
-        val seventh = ipt.map { it.get(6) }.filter { it.equals('1') }.size
-        val eighth = ipt.map { it.get(7) }.filter { it.equals('1') }.size
-        val ninth = ipt.map { it.get(8) }.filter { it.equals('1') }.size
-        val tenth = ipt.map { it.get(9) }.filter { it.equals('1') }.size
-        val eleventh = ipt.map { it.get(10) }.filter { it.equals('1') }.size
-        val twelfth = ipt.map { it.get(11) }.filter { it.equals('1') }.size
-        var gamma = ""
-        var epsilon = ""
-        if (first > (ipt.size / 2)) {
-            gamma = "1"
-            epsilon = "0"
-        } else {
-            gamma = "0"
-            epsilon = "1"
+    private fun partAHelper(ipt: List<String>): String {
+        val gamma = IntArray(ipt[0].length)
+        val epsilon = IntArray(ipt[0].length)
+        (ipt[0].indices).forEach { place ->
+            val g = if (ipt.map { it[place] }.filter { it == '1' }.size > (ipt.size / 2)) 1 else 0
+            gamma[place] = g
+            epsilon[place] = if (g == 1) 0 else 1
         }
-        if (second > (ipt.size / 2)) {
-            gamma += "1"
-            epsilon += "0"
-        } else {
-            gamma += "0"
-            epsilon += "1"
-        }
-        if (third > (ipt.size / 2)) {
-            gamma += "1"
-            epsilon += "0"
-        } else {
-            gamma += "0"
-            epsilon += "1"
-        }
-        if (fourth > (ipt.size / 2)) {
-            gamma += "1"
-            epsilon += "0"
-        } else {
-            gamma += "0"
-            epsilon += "1"
-        }
-        if (fifth > (ipt.size / 2)) {
-            gamma += "1"
-            epsilon += "0"
-        } else {
-            gamma += "0"
-            epsilon += "1"
-        }
-        if (sixth > (ipt.size / 2)) {
-            gamma += "1"
-            epsilon += "0"
-        } else {
-            gamma += "0"
-            epsilon += "1"
-        }
-        if (seventh > (ipt.size / 2)) {
-            gamma += "1"
-            epsilon += "0"
-        } else {
-            gamma += "0"
-            epsilon += "1"
-        }
-        if (eighth > (ipt.size / 2)) {
-            gamma += "1"
-            epsilon += "0"
-        } else {
-            gamma += "0"
-            epsilon += "1"
-        }
-        if (ninth > (ipt.size / 2)) {
-            gamma += "1"
-            epsilon += "0"
-        } else {
-            gamma += "0"
-            epsilon += "1"
-        }
-        if (tenth > (ipt.size / 2)) {
-            gamma += "1"
-            epsilon += "0"
-        } else {
-            gamma += "0"
-            epsilon += "1"
-        }
-        if (eleventh > (ipt.size / 2)) {
-            gamma += "1"
-            epsilon += "0"
-        } else {
-            gamma += "0"
-            epsilon += "1"
-        }
-        if (twelfth > (ipt.size / 2)) {
-            gamma += "1"
-            epsilon += "0"
-        } else {
-            gamma += "0"
-            epsilon += "1"
-        }
-        println("gamma: ${gamma.toInt(2)}, epsilon: ${epsilon.toInt(2)}")
-        return (gamma.toInt(2) * (epsilon.toInt(2))).toString()
+        val gDec = gamma.asList().joinToString("").toInt(2)
+        val eDec = epsilon.asList().joinToString("").toInt(2)
+        println("answer: ${(gDec * eDec)}")
+        return "${(gDec * eDec)}"
     }
 
     val trialInput = listOf(
