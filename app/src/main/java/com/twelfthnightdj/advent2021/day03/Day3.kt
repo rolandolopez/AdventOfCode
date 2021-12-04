@@ -1,5 +1,6 @@
-package com.twelfthnightdj.advent2021
+package com.twelfthnightdj.advent2021.day03
 
+import com.twelfthnightdj.advent2021.AocDays
 import com.twelfthnightdj.advent2021.util.InputHelpers
 
 class Day3 : AocDays() {
