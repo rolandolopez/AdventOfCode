@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.twelfthnightdj.advent2021"
-        minSdk 23
+        minSdk 25
         targetSdk 31
         versionCode 1
         versionName "1.0"
