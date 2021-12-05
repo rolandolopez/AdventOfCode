@@ -7,20 +7,35 @@ class Day5 : AocDays() {
     var segments = mutableListOf<Segment>()
     var grid = mutableMapOf<Int, MutableMap<Int, Int>>()
     override fun partA(): String {
-        parseInput(input)
+        parseInputA(input)
         return countGrid()
+    }
+
+    override fun reset() {
+        segments.clear()
+        grid.clear()
     }
 
     override fun partB(): String {
-        parseInput(trialInput)
+        parseInputB(input)
 
         return countGrid()
     }
 
-    private fun parseInput(ipt: List<String>) {
+    private fun parseInputA(ipt: List<String>) {
         ipt.forEachIndexed { index, value ->
             val seg = Segment(value)
             if (seg.isOrtho()) segments.add(seg)
+        }
+        segments.forEach { segment ->
+            markGrid(segment)
+        }
+    }
+
+    private fun parseInputB(ipt: List<String>) {
+        ipt.forEachIndexed { index, value ->
+            val seg = Segment(value)
+            segments.add(seg)
         }
         segments.forEach { segment ->
             markGrid(segment)

@@ -17,11 +17,26 @@ class Segment (seed: String) {
 
     fun allPoints(): MutableList<Point> {
         var allPoints = mutableListOf<Point>()
-        (Math.min(startPoint.x, endPoint.x)..Math.max(startPoint.x, endPoint.x)).forEach { x ->
-            (Math.min(startPoint.y, endPoint.y)..Math.max(startPoint.y, endPoint.y)).forEach { y ->
-                allPoints.add(Point(x, y))
+        if (isOrtho()) {
+            (Math.min(startPoint.x, endPoint.x)..Math.max(startPoint.x, endPoint.x)).forEach { x ->
+                (Math.min(startPoint.y, endPoint.y)..Math.max(
+                    startPoint.y,
+                    endPoint.y
+                )).forEach { y ->
+                    allPoints.add(Point(x, y))
+                }
+            }
+        } else {
+            val dx = if (endPoint.x > startPoint.x) 1 else -1
+            val dy = if (endPoint.y > startPoint.y) 1 else -1
+            var transientPoint = Point(startPoint)
+            allPoints.add(startPoint)
+            while (!transientPoint.equals(endPoint)) {
+                transientPoint.offset(dx, dy)
+                allPoints.add(Point(transientPoint))
             }
         }
+
         return allPoints
     }
 
