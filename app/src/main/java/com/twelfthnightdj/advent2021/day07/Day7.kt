@@ -13,17 +13,29 @@ class Day7 : AocDays() {
     override fun partA(): String {
         points = input?.split(",")?.map { it.toInt() } ?: emptyList()
         possibleAnswer = kotlin.math.floor(points.average()).toInt()
-        goA()
-
-        println("position : $possibleAnswer")
-        println("fuel cost: ${distanceA(possibleAnswer)}")
+        go {
+            distanceA(it)
+        }
 
         return distanceA(possibleAnswer).toString()
-
     }
 
-    fun goA() {
-        var dist = distanceA(possibleAnswer)
+    override fun reset() {
+        possibleAnswer = 0
+    }
+
+    override fun partB(): String {
+        points = input?.split(",")?.map { it.toInt() } ?: emptyList()
+        possibleAnswer = kotlin.math.floor(points.average()).toInt()
+        go {
+            distanceB(it)
+        }
+
+        return distanceB(possibleAnswer).toString()
+    }
+
+    fun go(dist: ((Int) -> Int)) {
+        var distance = dist(possibleAnswer)
         var step = 100
         var done: Boolean
 
@@ -31,10 +43,10 @@ class Day7 : AocDays() {
             done = false
             diffs.forEach diffs@ { diff ->
                 val nx = possibleAnswer + (step * diff)
-                val t = distanceA(nx)
+                val t = dist(nx)
 
-                if (t < dist) {
-                    dist = t
+                if (t < distance) {
+                    distance = t
                     possibleAnswer = nx
                     done = true
                     return@diffs
@@ -51,6 +63,16 @@ class Day7 : AocDays() {
         var sum = 0
         points.forEach {
             sum += abs(it - x)
+        }
+        return sum
+    }
+
+    private fun distanceB(x: Int): Int {
+        var sum = 0
+        points.forEach {
+            val d = abs(it - x)
+            val fuel = (d * (d + 1))/2
+            sum += fuel
         }
         return sum
     }
