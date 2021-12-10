@@ -77,8 +77,7 @@ class Day10 : AocDays() {
             }
             var running = 0L
             while (!stack.isEmpty()) {
-                val opener = stack.pop()
-                val point = when(opener) {
+                val point = when(stack.pop()) {
                     start0 -> 1L
                     start1 -> 2L
                     start2 -> 3L
