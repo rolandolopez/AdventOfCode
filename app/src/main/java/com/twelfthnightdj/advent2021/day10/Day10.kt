@@ -50,6 +50,49 @@ class Day10 : AocDays() {
         val sum = (illegals[0] * 3) + (illegals[1] * 57) + (illegals[2] * 1197) + (illegals[3] * 25137)
         return "$sum"
     }
+
+    override fun partB(): String {
+        val totalPoints = mutableListOf<Long>()
+        input.forEach input@ { line ->
+            val stack = Stack<String>()
+            line.toList().forEach {
+                if (starters.contains(it)) {
+                    stack.push(it)
+                } else {
+                    when (stack.peek()) {
+                        start0 -> if (it == end0) stack.pop() else {
+                            return@input
+                        }
+                        start1 -> if (it == end1) stack.pop() else {
+                            return@input
+                        }
+                        start2 -> if (it == end2) stack.pop() else {
+                            return@input
+                        }
+                        start3 -> if (it == end3) stack.pop() else {
+                            return@input
+                        }
+                    }
+                }
+            }
+            var running = 0L
+            while (!stack.isEmpty()) {
+                val opener = stack.pop()
+                val point = when(opener) {
+                    start0 -> 1L
+                    start1 -> 2L
+                    start2 -> 3L
+                    start3 -> 4L
+                    else -> 1L
+                }
+                running = (5L * running) + point
+            }
+            totalPoints.add(running)
+        }
+
+        val middle = (totalPoints.size - 1) / 2
+        return totalPoints.sorted()[middle].toString()
+    }
     private fun markAsIllegal(bad: String) {
         when(bad) {
             end0 -> illegals[0]++
@@ -62,7 +105,7 @@ class Day10 : AocDays() {
     val trialInput = InputHelpers.getListOfStringsFromFile("/day10trial.txt")
     private val input = InputHelpers.getListOfStringsFromFile("/day10.txt")
 
-    fun String.toList(): List<String> {
+    private fun String.toList(): List<String> {
         return this.toCharArray().map { it.toString() }
     }
 }

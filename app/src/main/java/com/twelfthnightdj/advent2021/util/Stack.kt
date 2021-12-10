@@ -32,4 +32,6 @@ class Stack<T> (seed: List<T> = emptyList(), val filo:Boolean = true) {
             returning
         }
     }
+    fun size() = stuff.size
+    fun isEmpty() = stuff.isEmpty()
 }
