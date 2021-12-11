@@ -11,7 +11,7 @@ class Day7 : AocDays() {
     val diffs = listOf(-1, 1)
 
     override fun partA(): String {
-        points = input?.split(",")?.map { it.toInt() } ?: emptyList()
+        points = input.split(",").map { it.toInt() }
         possibleAnswer = kotlin.math.floor(points.average()).toInt()
         go {
             distanceA(it)
@@ -25,7 +25,7 @@ class Day7 : AocDays() {
     }
 
     override fun partB(): String {
-        points = input?.split(",")?.map { it.toInt() } ?: emptyList()
+        points = input.split(",").map { it.toInt() }
         possibleAnswer = kotlin.math.floor(points.average()).toInt()
         go {
             distanceB(it)
