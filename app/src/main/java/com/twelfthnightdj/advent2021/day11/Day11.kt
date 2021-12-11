@@ -6,21 +6,35 @@ import com.twelfthnightdj.advent2021.util.InputHelpers
 
 class Day11 : AocDays() {
     private lateinit var ocean: MutableList<MutableList<Int>>
-    var alreadyFlashed = mutableSetOf<Point>()
-    var totalFlashes = 0
+    private var alreadyFlashed = mutableSetOf<Point>()
+    private var totalFlashes = 0
 
     override fun partA(): String {
         ocean = processInput(input)
         val maxX = ocean.size
         val maxY = ocean[0].size
-        (0..99).forEach {
+        repeat((0..99).count()) {
             alreadyFlashed.clear()
             miniStepA()
-            while (miniStepB(maxX, maxY) > 0) {
-            }
-            miniStepC()
+            while (miniStepB(maxX, maxY) > 0)
+                miniStepC()
         }
         return totalFlashes.toString()
+    }
+
+    override fun partB(): String {
+        ocean = processInput(input)
+        val maxX = ocean.size
+        val maxY = ocean[0].size
+        var counter = 0
+        while(alreadyFlashed.size != 100) {
+            counter++
+            alreadyFlashed.clear()
+            miniStepA()
+            while (miniStepB(maxX, maxY) > 0)
+            miniStepC()
+        }
+        return counter.toString()
     }
 
     private fun miniStepC() {
@@ -34,7 +48,7 @@ class Day11 : AocDays() {
     }
     private fun miniStepB(maxX: Int, maxY: Int): Int {
         var flashes = 0
-        var stepUp = mutableSetOf<Point>()
+        val stepUp = mutableSetOf<Point>()
         ocean.forEachIndexed { x, list ->
             list.forEachIndexed { y, value ->
                 val point = Point(x, y)
@@ -65,7 +79,7 @@ class Day11 : AocDays() {
 
     private fun miniStepA() {
         ocean.forEachIndexed { x, list ->
-            list.forEachIndexed { y, value ->
+            list.forEachIndexed { y, _ ->
                 ocean[x][y]++
             }
         }
@@ -74,11 +88,6 @@ class Day11 : AocDays() {
     private fun processInput(ipt: List<String>) =
         ipt.map { it.toCharArray().map { it.digitToInt() }.toMutableList() }.toMutableList()
 
-    fun MutableList<MutableList<Int>>.prettyPrint() {
-        this.forEachIndexed { x, list ->
-            println("$list")
-        }
-    }
     val trialInput = InputHelpers.getListOfStringsFromFile("/day11trial.txt")
     private val input = InputHelpers.getListOfStringsFromFile("/day11.txt")
 }
