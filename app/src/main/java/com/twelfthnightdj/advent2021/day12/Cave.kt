@@ -2,6 +2,9 @@ package com.twelfthnightdj.advent2021.day12
 
 class Cave (val name: String) {
 
+    val canRevisit: Boolean
+        get() = name.first().isUpperCase()
+
     fun addConnection(secondCave: Cave) {
         connections.add(secondCave)
     }
@@ -17,6 +20,6 @@ class Cave (val name: String) {
     }
 
     override fun toString(): String {
-        return "Cave $name with connections to ${connections.map { it.name }}"
+        return "Cave $name ($canRevisit)with connections to ${connections.map { it.name }}"
     }
 }
