@@ -5,13 +5,13 @@ import com.twelfthnightdj.advent2021.util.InputHelpers
 
 class Day12 : AocDays() {
 
-    var caves = mutableMapOf<String, Cave>()
-    var pathCounter = 0
+    private var caves = mutableMapOf<String, Cave>()
+    private var pathCounter = 0
 
     override fun partA(): String {
         processInput(input)
-        val startCave = caves.values.filter { it.name == "start" }.first()
-        val endCave = caves.values.filter { it.name == "end" }.first()
+        val startCave = caves.values.first { it.name == "start" }
+        val endCave = caves.values.first { it.name == "end" }
         printAllPaths(startCave, endCave)
         return "$pathCounter"
     }
@@ -23,14 +23,14 @@ class Day12 : AocDays() {
             val secondCave = caves.getOrDefault(second, Cave(second))
             firstCave.addConnection(secondCave)
             secondCave.addConnection(firstCave)
-            caves.put(first, firstCave)
-            caves.put(second, secondCave)
+            caves[first] = firstCave
+            caves[second] = secondCave
         }
     }
 
     private fun printAllPaths(s: Cave, d: Cave) {
-        var isVisited = mutableSetOf<Cave>()
-        var pathList = mutableListOf<Cave>()
+        val isVisited = mutableSetOf<Cave>()
+        val pathList = mutableListOf<Cave>()
         pathList.add(s)
         printAllPathsUtil(s, d, isVisited, pathList)
     }
