@@ -13,6 +13,25 @@ class Day13 : AocDays() {
         return "${points.size}"
     }
 
+    override fun reset() {
+        points.clear()
+        folds.clear()
+    }
+
+    override fun partB(): String {
+        process(input)
+        processFold()
+        val maxX = points.sortedByDescending { it.x }.first().x
+        val maxY = points.sortedByDescending { it.y }.first().y
+        val graph: MutableList<MutableList<String>> = MutableList(maxY + 1) { MutableList(maxX + 1) { "." } }
+        points.forEach {
+            graph[it.y][it.x] = "#"
+        }
+        println("graph:")
+        println("${graph.prettyPrint()}")
+        return "See Log Print Out EBLUBRFH"
+    }
+
     private fun processFold(count: Int = folds.size) {
         repeat(count) {
             val fold = folds.removeAt(0)
@@ -55,6 +74,12 @@ class Day13 : AocDays() {
     private fun addPoint(line: String) {
         val (x, y) = line.split(",").map { it.toInt() }
         points.add(Point(x, y))
+    }
+    fun MutableList<MutableList<String>>.prettyPrint() {
+        println("x: ${this.size}")
+        this.forEach {
+            println(it.joinToString(""))
+        }
     }
 
     val trialInput = InputHelpers.getListOfStringsFromFile("/day13trial.txt")
