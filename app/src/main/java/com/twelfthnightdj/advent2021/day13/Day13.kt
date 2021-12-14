@@ -5,8 +5,8 @@ import com.twelfthnightdj.advent2021.AocDays
 import com.twelfthnightdj.advent2021.util.InputHelpers
 
 class Day13 : AocDays() {
-    var points = mutableListOf<Point>()
-    var folds = mutableListOf<Pair<String, Int>>()
+    private var points = mutableListOf<Point>()
+    private var folds = mutableListOf<Pair<String, Int>>()
     override fun partA(): String {
         process(input)
         processFold(1)
@@ -21,8 +21,8 @@ class Day13 : AocDays() {
     override fun partB(): String {
         process(input)
         processFold()
-        val maxX = points.sortedByDescending { it.x }.first().x
-        val maxY = points.sortedByDescending { it.y }.first().y
+        val maxX = points.maxByOrNull { it.x }!!.x
+        val maxY = points.maxByOrNull { it.y }!!.y
         val graph: MutableList<MutableList<String>> = MutableList(maxY + 1) { MutableList(maxX + 1) { "." } }
         points.forEach {
             graph[it.y][it.x] = "#"

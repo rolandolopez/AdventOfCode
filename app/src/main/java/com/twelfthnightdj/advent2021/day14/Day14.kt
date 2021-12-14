@@ -10,7 +10,7 @@ class Day14 : AocDays() {
     override fun partA(): String {
         process(input)
         repeat(10) {
-            var newSeed = mutableListOf<String>()
+            val newSeed = mutableListOf<String>()
             seed.zipWithNext { a, b ->
                 if (newSeed.isEmpty()) {
                     newSeed.add(a)
@@ -39,7 +39,7 @@ class Day14 : AocDays() {
 
     private fun addInjection(line: String) {
         val(first, second) = line.split(" -> ")
-        injections.put(first, second)
+        injections[first] = second
     }
 
 
