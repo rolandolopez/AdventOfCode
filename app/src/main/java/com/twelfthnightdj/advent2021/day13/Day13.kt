@@ -75,7 +75,7 @@ class Day13 : AocDays() {
         val (x, y) = line.split(",").map { it.toInt() }
         points.add(Point(x, y))
     }
-    fun MutableList<MutableList<String>>.prettyPrint() {
+    private fun MutableList<MutableList<String>>.prettyPrint() {
         println("x: ${this.size}")
         this.forEach {
             println(it.joinToString(""))
