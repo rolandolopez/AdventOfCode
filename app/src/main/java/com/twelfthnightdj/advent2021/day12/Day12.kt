@@ -5,6 +5,7 @@ import com.twelfthnightdj.advent2021.AocDays
 import com.twelfthnightdj.advent2021.util.InputHelpers
 
 class Day12 : AocDays() {
+    override var dayId = 12
 
     private var caves = mutableMapOf<String, Cave>()
     private var pathCounter = 0
@@ -146,9 +147,6 @@ class Day12 : AocDays() {
         canVisitTwice && next != "start" -> calculateAll(edges, next, visited + current, false)
         else -> 0
     } }
-
-    val trialInput = InputHelpers.getListOfStringsFromFile("/day12trial.txt")
-    private val input = InputHelpers.getListOfStringsFromFile("/day12.txt")
 
     enum class VisitedStatus {
         NEVER,

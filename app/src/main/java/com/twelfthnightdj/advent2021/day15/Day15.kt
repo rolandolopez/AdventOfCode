@@ -2,9 +2,10 @@ package com.twelfthnightdj.advent2021.day15
 
 import android.graphics.Point
 import com.twelfthnightdj.advent2021.AocDays
-import com.twelfthnightdj.advent2021.util.InputHelpers
 
 class Day15 : AocDays() {
+
+    override var dayId = 15
 
     private lateinit var field: MutableList<MutableList<Int>>
     var maxX = 0
@@ -89,9 +90,6 @@ class Day15 : AocDays() {
 
     fun processInput(ipt: List<String>) =
         ipt.map { it.toCharArray().map { it.digitToInt() }.toMutableList() }.toMutableList()
-
-    val trialInput = InputHelpers.getListOfStringsFromFile("/day15trial.txt")
-    private val input = InputHelpers.getListOfStringsFromFile("/day15.txt")
 
     private fun MutableList<MutableList<Int>>.prettyPrint() {
         println("x: ${this.size}")

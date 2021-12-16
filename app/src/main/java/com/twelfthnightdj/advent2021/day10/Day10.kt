@@ -5,6 +5,7 @@ import com.twelfthnightdj.advent2021.util.InputHelpers
 import com.twelfthnightdj.advent2021.util.Stack
 
 class Day10 : AocDays() {
+    override var dayId = 10
 
     private val start0 = "("
     private val start1 = "["
@@ -100,9 +101,6 @@ class Day10 : AocDays() {
             end3 -> illegals[3]++
         }
     }
-
-    val trialInput = InputHelpers.getListOfStringsFromFile("/day10trial.txt")
-    private val input = InputHelpers.getListOfStringsFromFile("/day10.txt")
 
     private fun String.toList(): List<String> {
         return this.toCharArray().map { it.toString() }

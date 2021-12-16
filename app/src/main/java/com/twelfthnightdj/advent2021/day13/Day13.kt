@@ -5,6 +5,8 @@ import com.twelfthnightdj.advent2021.AocDays
 import com.twelfthnightdj.advent2021.util.InputHelpers
 
 class Day13 : AocDays() {
+    override var dayId = 13
+
     private var points = mutableListOf<Point>()
     private var folds = mutableListOf<Pair<String, Int>>()
     override fun partA(): String {
@@ -81,8 +83,4 @@ class Day13 : AocDays() {
             println(it.joinToString(""))
         }
     }
-
-    val trialInput = InputHelpers.getListOfStringsFromFile("/day13trial.txt")
-    private val input = InputHelpers.getListOfStringsFromFile("/day13.txt")
-
 }

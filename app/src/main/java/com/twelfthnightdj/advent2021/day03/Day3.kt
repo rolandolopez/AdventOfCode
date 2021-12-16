@@ -4,6 +4,8 @@ import com.twelfthnightdj.advent2021.AocDays
 import com.twelfthnightdj.advent2021.util.InputHelpers
 
 class Day3 : AocDays() {
+    override var dayId = 3
+
     override fun partA(): String {
         return partAHelper(input)
     }
@@ -26,13 +28,23 @@ class Day3 : AocDays() {
     }
 
     private fun partBHelper(ipt: List<String>): String {
-        val oxygen = criteria(ipt = ipt, checkingFor = '1', more = '1', less = '0', place = 0, default = '1')
-        val scrubber = criteria(ipt = ipt, checkingFor = '1', more = '0', less = '1', place = 0, default = '0')
+        val oxygen =
+            criteria(ipt = ipt, checkingFor = '1', more = '1', less = '0', place = 0, default = '1')
+        val scrubber =
+            criteria(ipt = ipt, checkingFor = '1', more = '0', less = '1', place = 0, default = '0')
         val oDec = oxygen.joinToString("").toInt(2)
         val sDec = scrubber.joinToString("").toInt(2)
         return "${(oDec * sDec)}"
     }
-    private fun criteria(ipt: List<String>, checkingFor: Char, more: Char, less: Char, place: Int, default: Char): List<String> {
+
+    private fun criteria(
+        ipt: List<String>,
+        checkingFor: Char,
+        more: Char,
+        less: Char,
+        place: Int,
+        default: Char
+    ): List<String> {
         val onesCount = ipt.map { it[place] }.filter { it == checkingFor }.size
         val winner = when {
             (onesCount < (ipt.size / 2.0)) -> less
@@ -53,21 +65,4 @@ class Day3 : AocDays() {
             )
         }
     }
-
-    val trialInput = listOf(
-        "00100",
-        "11110",
-        "10110",
-        "10111",
-        "10101",
-        "01111",
-        "00111",
-        "11100",
-        "10000",
-        "11001",
-        "00010",
-        "01010"
-    )
-
-    val input = InputHelpers.getListOfStringsFromFile("/day03.txt")
 }

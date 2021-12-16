@@ -5,6 +5,8 @@ import com.twelfthnightdj.advent2021.AocDays
 import com.twelfthnightdj.advent2021.util.InputHelpers
 
 class Day9 : AocDays() {
+    override var dayId = 9
+
     private lateinit var sanitized: List<List<Int>>
     private var safeSpots = mutableListOf<Int>()
     private var safePoints = mutableListOf<Point>()
@@ -88,8 +90,4 @@ class Day9 : AocDays() {
         return true
     }
     private fun processInput(ipt: List<String>) = ipt.map{ it.toCharArray().map { it.digitToInt() }}
-
-
-    val trialInput = InputHelpers.getListOfStringsFromFile("/day09trial.txt")
-    private val input = InputHelpers.getListOfStringsFromFile("/day09.txt")
 }

@@ -5,13 +5,15 @@ import com.twelfthnightdj.advent2021.util.InputHelpers
 import kotlin.math.abs
 
 class Day7 : AocDays() {
+    override var dayId = 7
+
     var points = emptyList<Int>()
     var possibleAnswer = 0
     val eps = .001
     val diffs = listOf(-1, 1)
 
     override fun partA(): String {
-        points = input?.split(",")?.map { it.toInt() } ?: emptyList()
+        points = inputAsString.split(",").map { it.toInt() } ?: emptyList()
         possibleAnswer = kotlin.math.floor(points.average()).toInt()
         go {
             distanceA(it)
@@ -25,7 +27,7 @@ class Day7 : AocDays() {
     }
 
     override fun partB(): String {
-        points = input?.split(",")?.map { it.toInt() } ?: emptyList()
+        points = inputAsString.split(",").map { it.toInt() } ?: emptyList()
         possibleAnswer = kotlin.math.floor(points.average()).toInt()
         go {
             distanceB(it)
@@ -76,7 +78,4 @@ class Day7 : AocDays() {
         }
         return sum
     }
-
-    val trialInput = InputHelpers.getContentsFromFile("/day07trial.txt")
-    val input = InputHelpers.getContentsFromFile("/day07.txt")
 }

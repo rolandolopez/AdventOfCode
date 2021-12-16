@@ -4,6 +4,9 @@ import com.twelfthnightdj.advent2021.AocDays
 import com.twelfthnightdj.advent2021.util.InputHelpers
 
 class Day4 : AocDays() {
+
+    override var dayId = 4
+
     override fun partA(): String {
         val bingo = Bingo(input)
         val final = bingo.startAGame()
@@ -15,7 +18,4 @@ class Day4 : AocDays() {
         val final = bingo.startBGame()
         return final.toString()
     }
-
-    val trialInput = InputHelpers.getListOfStringsFromFile("/day04trial.txt")
-    val input = InputHelpers.getListOfStringsFromFile("/day04.txt")
 }

@@ -4,13 +4,15 @@ import com.twelfthnightdj.advent2021.AocDays
 import com.twelfthnightdj.advent2021.util.InputHelpers
 
 class Day6 : AocDays() {
+    override var dayId = 6
+
     override fun partA(): String {
-        val seed = input?.split(",") ?: emptyList()
+        val seed = inputAsString.split(",") ?: emptyList()
         return  start(seed.map { it.toInt() })
     }
 
     override fun partB(): String {
-        val seed = input?.split(",") ?: emptyList()
+        val seed = inputAsString.split(",") ?: emptyList()
         return fazio(seed.map { it.toInt() }, 256)
     }
 
@@ -41,7 +43,4 @@ class Day6 : AocDays() {
         }
         return resultFish.sum().toString()
     }
-
-    val trialInput = InputHelpers.getContentsFromFile("/day06trial.txt")
-    val input = InputHelpers.getContentsFromFile("/day06.txt")
 }

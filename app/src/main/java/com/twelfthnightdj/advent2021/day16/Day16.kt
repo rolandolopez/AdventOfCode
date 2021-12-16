@@ -6,11 +6,13 @@ import java.util.*
 
 class Day16 : AocDays() {
 
+    override var dayId = 16
+
     private var currentIndex = 0
     private var bin = ""
     private var versionSum = 0L
     override fun partA(): String {
-        bin = input.toBin()
+        bin = inputAsString.toBin()
         startReadingPacket()
         return versionSum.toString()
     }
@@ -20,8 +22,9 @@ class Day16 : AocDays() {
         bin = ""
         versionSum = 0L
     }
+
     override fun partB(): String {
-        bin = input.toBin()
+        bin = inputAsString.toBin()
         return startReadingPacket().toString()
     }
 
@@ -38,7 +41,7 @@ class Day16 : AocDays() {
 
     private fun treatAsLiteralString(): Long {
         var literal = ""
-        while(true) {
+        while (true) {
             val group = bin.sliceIt(5)
             literal += group.substring(1)
             if (group.first() == '0') {
@@ -53,7 +56,7 @@ class Day16 : AocDays() {
         if (lengthTypeId == "0") {
             val totalBits = bin.sliceIt(15).toLong(2)
             val startingIndex = currentIndex
-            while(currentIndex + 1 < startingIndex + totalBits) {
+            while (currentIndex + 1 < startingIndex + totalBits) {
                 terms.add(startReadingPacket())
             }
         } else {
@@ -64,7 +67,7 @@ class Day16 : AocDays() {
         }
         return when (typeId) {
             0L -> terms.sum()
-            1L -> terms.fold(1L){ product, factor -> product * factor }
+            1L -> terms.fold(1L) { product, factor -> product * factor }
             2L -> terms.minOrNull() ?: 0L
             3L -> terms.maxOrNull() ?: 0L
             5L -> if (terms[0] > terms[1]) 1L else 0L
@@ -106,7 +109,4 @@ class Day16 : AocDays() {
             "F" -> "1111"
             else -> hex
         }
-
-    val trialInput = InputHelpers.getContentsFromFile("/day16trial.txt")
-    private val input = InputHelpers.getContentsFromFile("/day16.txt")
 }

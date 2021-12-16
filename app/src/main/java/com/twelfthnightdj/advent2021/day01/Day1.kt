@@ -7,13 +7,13 @@ import com.twelfthnightdj.advent2021.util.InputHelpers
 class Day1 : AocDays() {
 
     override fun partA(): String {
-        return countIt(input).toString()
+        return countIt(localInput).toString()
     }
 
     override fun partB(): String {
-        val mappedInput = input.mapIndexed { index, value ->
-            val second = if ((index + 1) >= input.size) 0 else input[index + 1]
-            val third = if ((index + 2) >= input.size) 0 else input[index + 2]
+        val mappedInput = localInput.mapIndexed { index, value ->
+            val second = if ((index + 1) >= localInput.size) 0 else localInput[index + 1]
+            val third = if ((index + 2) >= localInput.size) 0 else localInput[index + 2]
             value + second + third
         }
 
@@ -31,18 +31,5 @@ class Day1 : AocDays() {
         return counter
     }
 
-    val trialInput = listOf(
-        199,
-        200,
-        208,
-        210,
-        200,
-        207,
-        240,
-        269,
-        260,
-        263
-    )
-
-    val input = InputHelpers.getListOfStringsFromFile("/day01.txt").map { it.toInt() }
+    val localInput = input.map { it.toInt() }
 }

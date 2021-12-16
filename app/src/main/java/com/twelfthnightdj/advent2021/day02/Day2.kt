@@ -4,6 +4,8 @@ import com.twelfthnightdj.advent2021.AocDays
 import com.twelfthnightdj.advent2021.util.InputHelpers
 
 class Day2 : AocDays() {
+
+    override var dayId = 2
     override fun partA(): String {
         var horizontal = 0
         var depth = 0
@@ -45,5 +47,4 @@ class Day2 : AocDays() {
         "forward 2"
     )
 
-    val input = InputHelpers.getListOfStringsFromFile("/day02.txt")
 }

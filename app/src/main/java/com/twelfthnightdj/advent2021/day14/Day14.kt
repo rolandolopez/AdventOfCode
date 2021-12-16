@@ -4,6 +4,8 @@ import com.twelfthnightdj.advent2021.AocDays
 import com.twelfthnightdj.advent2021.util.InputHelpers
 
 class Day14 : AocDays() {
+    override var dayId = 14
+
     private var seed = mutableListOf<String>()
     private var injections = mutableMapOf<String, String>()
 
@@ -41,9 +43,4 @@ class Day14 : AocDays() {
         val(first, second) = line.split(" -> ")
         injections[first] = second
     }
-
-
-
-    val trialInput = InputHelpers.getListOfStringsFromFile("/day14trial.txt")
-    private val input = InputHelpers.getListOfStringsFromFile("/day14.txt")
 }
