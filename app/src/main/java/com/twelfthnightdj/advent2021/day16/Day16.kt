@@ -29,11 +29,10 @@ class Day16 : AocDays() {
         val versionNumber = bin.sliceIt(3).toLong(2)
         versionSum += versionNumber
         val typeId = bin.sliceIt(3).toLong(2)
-        if (typeId == 4L) {
-            return treatAsLiteralString()
-        }
-        else {
-            return treatAsOperator(typeId)
+        return if (typeId == 4L) {
+            treatAsLiteralString()
+        } else {
+            treatAsOperator(typeId)
         }
     }
 
@@ -73,7 +72,6 @@ class Day16 : AocDays() {
             7L -> if (terms[0] == terms[1]) 1L else 0L
             else -> 0L
         }
-        return 0L
     }
 
     private fun String.sliceIt(l: Int): String {
@@ -83,7 +81,7 @@ class Day16 : AocDays() {
     }
 
     private fun String.toBin(): String {
-        return this.toCharArray().map { hexToBin(it) }.joinToString("")
+        return this.toCharArray().joinToString("") { hexToBin(it) }
     }
 
     private fun hexToBin(hex: Char): String = hexToBin(hex.toString())
