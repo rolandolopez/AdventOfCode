@@ -20,9 +20,13 @@ abstract class AocDays {
         return InputHelpers.getListOfStringsFromFile("/day${dayId}.txt")
     }
 
-    val trialInputAsString = loadTrialInputAsString()
-    val inputAsString = loadInputAsString()
+    val trialInputAsString
+        get() = loadTrialInputAsString()
+    val inputAsString
+        get() = loadInputAsString()
 
-    val trialInput = loadTrialInputAsList()
-    val input = loadInputAsList()
+    val trialInput
+        get() = loadTrialInputAsList()
+    val input
+        get() = loadInputAsList()
 }

@@ -1,10 +1,11 @@
 package com.twelfthnightdj.advent2021.day01
 
 import com.twelfthnightdj.advent2021.AocDays
-import com.twelfthnightdj.advent2021.util.InputHelpers
 
 
 class Day1 : AocDays() {
+
+    override var dayId = 1
 
     override fun partA(): String {
         return countIt(localInput).toString()
