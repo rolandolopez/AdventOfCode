@@ -15,15 +15,25 @@ class Day16 : AocDays() {
         return versionSum.toString()
     }
 
-    private fun startReadingPacket() {
+    override fun reset() {
+        currentIndex = 0
+        bin = ""
+        versionSum = 0L
+    }
+    override fun partB(): String {
+        bin = input.toBin()
+        return startReadingPacket().toString()
+    }
+
+    private fun startReadingPacket(): Long {
         val versionNumber = bin.sliceIt(3).toLong(2)
         versionSum += versionNumber
         val typeId = bin.sliceIt(3).toLong(2)
         if (typeId == 4L) {
-            val literal = treatAsLiteralString()
+            return treatAsLiteralString()
         }
         else {
-            val operator = treatAsOperator()
+            return treatAsOperator(typeId)
         }
     }
 
@@ -38,20 +48,32 @@ class Day16 : AocDays() {
         }
     }
 
-    private fun treatAsOperator() {
+    private fun treatAsOperator(typeId: Long): Long {
         val lengthTypeId = bin.sliceIt(1)
+        val terms = mutableListOf<Long>()
         if (lengthTypeId == "0") {
             val totalBits = bin.sliceIt(15).toLong(2)
             val startingIndex = currentIndex
             while(currentIndex + 1 < startingIndex + totalBits) {
-                startReadingPacket()
+                terms.add(startReadingPacket())
             }
         } else {
             val totalPackets = bin.sliceIt(11).toInt(2)
             repeat(totalPackets) {
-                startReadingPacket()
+                terms.add(startReadingPacket())
             }
         }
+        return when (typeId) {
+            0L -> terms.sum()
+            1L -> terms.fold(1L){ product, factor -> product * factor }
+            2L -> terms.minOrNull() ?: 0L
+            3L -> terms.maxOrNull() ?: 0L
+            5L -> if (terms[0] > terms[1]) 1L else 0L
+            6L -> if (terms[0] < terms[1]) 1L else 0L
+            7L -> if (terms[0] == terms[1]) 1L else 0L
+            else -> 0L
+        }
+        return 0L
     }
 
     private fun String.sliceIt(l: Int): String {
