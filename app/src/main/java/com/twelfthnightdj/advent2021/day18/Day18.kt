@@ -25,20 +25,17 @@ class Day18 : AocDays() {
 
     private fun reduce(num: SnailfishNumber) {
         traverseToExplode(num)
+        println("exploding pair: $explodingPair")
         explodingPair?.let { explode(it) }
     }
 
     private fun traverseToExplode(num: SnailfishNumber) {
-        println("checking: $num")
-        if (num.isSoloPair() && explodingPair == null) {
+        if (num.isSoloPair() && explodingPair == null && num.depth() >= 4) {
             println("solo pair $num with depth: ${num.depth(0)}")
             explodingPair = num
         }
-        println("left: ${num.left}")
         num.left?.let { traverseToExplode(it) }
-        println("right: ${num.right}")
         num.right?.let {
-            println("checking RIGHT: $it")
             traverseToExplode(it)
         }
 
@@ -46,42 +43,54 @@ class Day18 : AocDays() {
 
     private fun explode(num: SnailfishNumber) {
         println("try to explode $num")
-        findLeft(num)?.let {
-            println("Left number: $it")
-            it.value = it.value!! + (num.left!!.value ?:0)
-        }
-        findRight(num)?.let {
-            println("Right number: $it")
-            it.value = it.value!! + (num.right!!.value ?: 0)
-        }
-        if (num.parent?.left == num) {
-            num.parent?.left?.value = 0
-        } else {
-            num.parent?.right?.value = 0
-        }
-    }
-    fun findLeft(num:SnailfishNumber): SnailfishNumber? {
-        if (num.parent == null) return null
-        if (num.parent!!.left?.value != null) return num.parent!!.left
-        return findLeft(num.parent!!)
+
+//        findLeft(num.parent!!)?.let {
+//            it.leftValue = it.leftValue!! + (num.leftValue ?: 0)
+//        }
+//        findRight(num.parent!!)?.let {
+//            it.rightValue = it.rightValue!! + (num.rightValue ?: 0)
+//        }
+//        if (num.parent?.left == num) {
+//            num.parent?.leftValue = 0
+//        } else {
+//            num.parent?.rightValue = 0
+//        }
     }
 
-    fun findRight(num:SnailfishNumber): SnailfishNumber? {
-        if (num.parent == null) return null
-        if (num.parent!!.right?.value != null) return num.parent!!.right
-        return findLeft(num.parent!!)
+    //    fun findLeft(num:SnailfishNumber): SnailfishNumber? {
+//        if (num.parent == null) return null
+//        if (num.parent!!.leftValue != null) return num.parent!!
+//        return findLeft(num.parent!!)
+//    }
+    fun findLeft(num: SnailfishNumber): SnailfishNumber? {
+        if (num.left == null) return num
+        return findLeft(num.left!!)
     }
+    fun findRight(num: SnailfishNumber): SnailfishNumber? {
+        if (num.right == null) return num
+        return findRight(num.right!!)
+    }
+
+
+//    fun findRight(num: SnailfishNumber): SnailfishNumber? {
+//        println("findRight: $num")
+//        if (num.parent == null) return null
+////        if (num.parent!!.left != null) return findLeft(num.parent!!.left!!)
+//        if (num.parent!!.rightValue != null) return num.parent!!
+//        return findRight(num.parent!!)
+//    }
 
     private fun process(ipt: String): SnailfishNumber {
         println("ipt: $ipt")
-        currentIndex = -1
+        currentIndex = 0
         return startNumber(ipt)
     }
+
     private fun startNumber(ipt: String, parent: SnailfishNumber? = null): SnailfishNumber {
         currentIndex++
         var isLeft = true
         var n = SnailfishNumber(parent)
-        while(true) {
+        while (true) {
             when (ipt[currentIndex]) {
                 '[' -> {
                     if (isLeft) {
@@ -92,15 +101,18 @@ class Day18 : AocDays() {
                 }
                 ',' -> {
                     isLeft = false
-                    n.right = startNumber(ipt, n)
+                    currentIndex++
                 }
                 ']' -> {
                     currentIndex++
                     return n
                 }
                 else -> {
-                    n.value = ipt[currentIndex++].digitToInt()
-                    return n
+                    if (isLeft) {
+                        n.leftValue = ipt[currentIndex++].digitToInt()
+                    } else {
+                        n.rightValue = ipt[currentIndex++].digitToInt()
+                    }
                 }
             }
         }

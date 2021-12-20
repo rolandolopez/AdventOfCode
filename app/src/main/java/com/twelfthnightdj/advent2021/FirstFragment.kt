@@ -92,7 +92,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 else -> {}
             }
         }
-        binding.daySpinner.setSelection(min(Calendar.getInstance().get(DAY_OF_MONTH), 25), true)
+        binding.daySpinner.setSelection(min(18/*Calendar.getInstance().get(DAY_OF_MONTH)*/, 25), true)
     }
 
     @SuppressLint("SetTextI18n")
