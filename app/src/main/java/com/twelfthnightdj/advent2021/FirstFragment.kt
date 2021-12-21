@@ -27,6 +27,7 @@ import com.twelfthnightdj.advent2021.day15.Day15
 import com.twelfthnightdj.advent2021.day16.Day16
 import com.twelfthnightdj.advent2021.day17.Day17
 import com.twelfthnightdj.advent2021.day18.Day18
+import com.twelfthnightdj.advent2021.day20.Day20
 import java.lang.Integer.min
 import java.util.*
 import java.util.Calendar.DAY_OF_MONTH
@@ -88,11 +89,12 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 16 -> runDay(Day16())
                 17 -> runDay(Day17())
                 18 -> runDay(Day18())
+                20 -> runDay(Day20())
 
                 else -> {}
             }
         }
-        binding.daySpinner.setSelection(min(18/*Calendar.getInstance().get(DAY_OF_MONTH)*/, 25), true)
+        binding.daySpinner.setSelection(min(Calendar.getInstance().get(DAY_OF_MONTH), 25), true)
     }
 
     @SuppressLint("SetTextI18n")
