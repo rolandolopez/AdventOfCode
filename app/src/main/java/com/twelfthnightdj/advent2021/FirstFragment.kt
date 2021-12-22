@@ -29,6 +29,7 @@ import com.twelfthnightdj.advent2021.day17.Day17
 import com.twelfthnightdj.advent2021.day18.Day18
 import com.twelfthnightdj.advent2021.day20.Day20
 import com.twelfthnightdj.advent2021.day21.Day21
+import com.twelfthnightdj.advent2021.day22.Day22
 import java.lang.Integer.min
 import java.util.*
 import java.util.Calendar.DAY_OF_MONTH
@@ -92,6 +93,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 18 -> runDay(Day18())
                 20 -> runDay(Day20())
                 21 -> runDay(Day21())
+                22 -> runDay(Day22())
 
                 else -> {}
             }
