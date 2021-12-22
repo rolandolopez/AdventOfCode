@@ -22,7 +22,6 @@ class Day20 : AocDays() {
 //        image.prettyPrint()
         repeat(t) {
             pad(image, if (it % 2 == 0) '.' else rosetta.first())
-            println("image size: ${image.size} x ${image[0].size}")
             maxY = image.size
             maxX = image[0].size
             val enhancement = MutableList(image[0].size) { MutableList(image.size) { '.' } }
@@ -33,9 +32,10 @@ class Day20 : AocDays() {
                     enhancement[y][x] = rosetta[dec]
                 }
             }
-//            image.prettyPrint()
             image = enhancement
-//            image.prettyPrint()
+            enhancement[enhancement.size - 2].forEachIndexed { index, c ->
+                image.last()[index] = c
+            }
         }
     }
 
