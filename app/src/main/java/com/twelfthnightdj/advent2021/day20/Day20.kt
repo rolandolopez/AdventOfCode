@@ -5,10 +5,10 @@ import com.twelfthnightdj.advent2021.AocDays
 class Day20 : AocDays() {
 
     override var dayId = 20
-    var rosetta = mutableListOf<Char>()
+    private var rosetta = mutableListOf<Char>()
     private lateinit var image: MutableList<MutableList<Char>>
-    var maxX = 0
-    var maxY = 0
+    private var maxX = 0
+    private var maxY = 0
     override fun partA(): String {
         process(input)
         maxX = image.size
@@ -66,10 +66,10 @@ class Day20 : AocDays() {
                 bin += if (image[y - 1][x - 1] == '#') "1" else "0"
                 bin += if (image[y - 1][x] == '#') "1" else "0"
             }
-            if (x + 1 >= maxX){
-                bin += "0"
+            bin += if (x + 1 >= maxX){
+                "0"
             } else {
-                bin += if (image[y - 1][x + 1] == '#') "1" else "0"
+                if (image[y - 1][x + 1] == '#') "1" else "0"
             }
         }
 
@@ -81,10 +81,10 @@ class Day20 : AocDays() {
             bin += if (image[y][x - 1] == '#') "1" else "0"
             bin += if (image[y][x] == '#') "1" else "0"
         }
-        if (x + 1 >= maxX) {
-            bin += "0"
+        bin += if (x + 1 >= maxX) {
+            "0"
         } else {
-            bin += if (image[y][x + 1] == '#') "1" else "0"
+            if (image[y][x + 1] == '#') "1" else "0"
         }
 
         // y + 1
@@ -98,10 +98,10 @@ class Day20 : AocDays() {
                 bin += if (image[y + 1][x - 1] == '#') "1" else "0"
                 bin += if (image[y + 1][x] == '#') "1" else "0"
             }
-            if (x + 1 >= maxX){
-                bin += "0"
+            bin += if (x + 1 >= maxX){
+                "0"
             } else {
-                bin += if (image[y + 1][x + 1] == '#') "1" else "0"
+                if (image[y + 1][x + 1] == '#') "1" else "0"
             }
         }
         return bin.toInt(2)
