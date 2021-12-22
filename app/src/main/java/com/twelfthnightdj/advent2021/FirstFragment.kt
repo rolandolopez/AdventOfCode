@@ -2,12 +2,12 @@ package com.twelfthnightdj.advent2021
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.fragment.app.Fragment
 import com.twelfthnightdj.advent2021.databinding.FragmentFirstBinding
 import com.twelfthnightdj.advent2021.day01.Day1
 import com.twelfthnightdj.advent2021.day02.Day2
@@ -33,7 +33,6 @@ import com.twelfthnightdj.advent2021.day22.Day22
 import java.lang.Integer.min
 import java.util.*
 import java.util.Calendar.DAY_OF_MONTH
-import kotlin.math.max
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -51,7 +50,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
         val spinner = binding.daySpinner
@@ -72,7 +71,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonFirst.setOnClickListener {
-            when(daySelected) {
+            when (daySelected) {
                 1 -> runDay(Day1())
                 2 -> runDay(Day2())
                 3 -> runDay(Day3())
@@ -95,7 +94,8 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 21 -> runDay(Day21())
                 22 -> runDay(Day22())
 
-                else -> {}
+                else -> {
+                }
             }
         }
         binding.daySpinner.setSelection(min(Calendar.getInstance().get(DAY_OF_MONTH), 25), true)
