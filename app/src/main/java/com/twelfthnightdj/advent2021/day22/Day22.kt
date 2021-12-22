@@ -8,9 +8,20 @@ class Day22 : AocDays() {
     private var cubes = mutableSetOf<String>()
 
     private var rules = mutableListOf<Rule>()
-    override fun partA(): String {
+//    override fun partA(): String {
+//        parse(input)
+//        process(true)
+//        return cubes.size.toString()
+//    }
+
+    override fun reset() {
+        cubes.clear()
+        rules.clear()
+    }
+
+    override fun partB(): String {
         parse(input)
-        process()
+        process(false)
         return cubes.size.toString()
     }
 
@@ -21,10 +32,10 @@ class Day22 : AocDays() {
         }
     }
 
-    private fun process() {
+    private fun process(limit: Boolean) {
         println("processing ${rules.size} rules")
         rules.forEach { rule ->
-            rule.flipCubes(cubes)
+            rule.flipCubes(cubes, limit)
         }
 //        rules[0].flipCubes(cubes)
     }
