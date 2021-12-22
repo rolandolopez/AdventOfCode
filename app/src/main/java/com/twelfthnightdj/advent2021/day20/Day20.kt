@@ -19,9 +19,9 @@ class Day20 : AocDays() {
 
     private fun enhance(t: Int) {
         println("image size: ${image.size} x ${image[0].size}")
-        image.prettyPrint()
+//        image.prettyPrint()
         repeat(t) {
-            pad(image)
+            pad(image, if (it % 2 == 0) '.' else rosetta.first())
             println("image size: ${image.size} x ${image[0].size}")
             maxY = image.size
             maxX = image[0].size
@@ -33,22 +33,47 @@ class Day20 : AocDays() {
                     enhancement[y][x] = rosetta[dec]
                 }
             }
-            image.prettyPrint()
+//            image.prettyPrint()
             image = enhancement
-            image.prettyPrint()
+//            image.prettyPrint()
         }
     }
 
-    private fun pad(image: MutableList<MutableList<Char>>) {
-        image.add(0, MutableList(image[0].size) { '.' } )
-        image.add(0, MutableList(image[0].size) { '.' } )
-        image.add(MutableList(image[0].size) { '.' } )
-        image.add(MutableList(image[0].size) { '.' } )
+    private fun pad(image: MutableList<MutableList<Char>>, filler: Char) {
+        println("filling with: $filler")
+        image.add(0, MutableList(image[0].size) { filler } )
+        image.add(0, MutableList(image[0].size) { filler } )
+        image.add(0, MutableList(image[0].size) { filler } )
+//        image.add(0, MutableList(image[0].size) { filler } )
+//        image.add(0, MutableList(image[0].size) { filler } )
+//        image.add(0, MutableList(image[0].size) { filler } )
+//        image.add(0, MutableList(image[0].size) { filler } )
+//        image.add(0, MutableList(image[0].size) { filler } )
+        image.add(MutableList(image[0].size) { filler } )
+        image.add(MutableList(image[0].size) { filler } )
+        image.add(MutableList(image[0].size) { filler } )
+//        image.add(MutableList(image[0].size) { filler } )
+//        image.add(MutableList(image[0].size) { filler } )
+//        image.add(MutableList(image[0].size) { filler } )
+//        image.add(MutableList(image[0].size) { filler } )
+//        image.add(MutableList(image[0].size) { filler } )
         image.forEach {
-            it.add(0, '.')
-            it.add(0, '.')
-            it.add('.')
-            it.add('.')
+            it.add(0, filler)
+            it.add(0, filler)
+            it.add(0, filler)
+//            it.add(0, filler)
+//            it.add(0, filler)
+//            it.add(0, filler)
+//            it.add(0, filler)
+//            it.add(0, filler)
+            it.add(filler)
+            it.add(filler)
+            it.add(filler)
+//            it.add(filler)
+//            it.add(filler)
+//            it.add(filler)
+//            it.add(filler)
+//            it.add(filler)
         }
     }
 

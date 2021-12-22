@@ -35,9 +35,7 @@ class Day18 : AocDays() {
             explodingPair = num
         }
         num.left?.let { traverseToExplode(it) }
-        num.right?.let {
-            traverseToExplode(it)
-        }
+        num.right?.let { traverseToExplode(it) }
 
     }
 
