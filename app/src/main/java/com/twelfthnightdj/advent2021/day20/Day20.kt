@@ -13,13 +13,11 @@ class Day20 : AocDays() {
         process(input)
         maxX = image.size
         maxY = image[0].size
-        enhance(2)
+        enhance(50)
         return "${countIt()}"
     }
 
     private fun enhance(t: Int) {
-        println("image size: ${image.size} x ${image[0].size}")
-//        image.prettyPrint()
         repeat(t) {
             pad(image, if (it % 2 == 0) '.' else rosetta.first())
             maxY = image.size
@@ -28,7 +26,6 @@ class Day20 : AocDays() {
             image.forEachIndexed { x, list ->
                 list.forEachIndexed { y, _ ->
                     val dec = convertToDecimal(x, y)
-
                     enhancement[y][x] = rosetta[dec]
                 }
             }
@@ -40,40 +37,19 @@ class Day20 : AocDays() {
     }
 
     private fun pad(image: MutableList<MutableList<Char>>, filler: Char) {
-        println("filling with: $filler")
         image.add(0, MutableList(image[0].size) { filler } )
         image.add(0, MutableList(image[0].size) { filler } )
         image.add(0, MutableList(image[0].size) { filler } )
-//        image.add(0, MutableList(image[0].size) { filler } )
-//        image.add(0, MutableList(image[0].size) { filler } )
-//        image.add(0, MutableList(image[0].size) { filler } )
-//        image.add(0, MutableList(image[0].size) { filler } )
-//        image.add(0, MutableList(image[0].size) { filler } )
         image.add(MutableList(image[0].size) { filler } )
         image.add(MutableList(image[0].size) { filler } )
         image.add(MutableList(image[0].size) { filler } )
-//        image.add(MutableList(image[0].size) { filler } )
-//        image.add(MutableList(image[0].size) { filler } )
-//        image.add(MutableList(image[0].size) { filler } )
-//        image.add(MutableList(image[0].size) { filler } )
-//        image.add(MutableList(image[0].size) { filler } )
         image.forEach {
             it.add(0, filler)
             it.add(0, filler)
             it.add(0, filler)
-//            it.add(0, filler)
-//            it.add(0, filler)
-//            it.add(0, filler)
-//            it.add(0, filler)
-//            it.add(0, filler)
             it.add(filler)
             it.add(filler)
             it.add(filler)
-//            it.add(filler)
-//            it.add(filler)
-//            it.add(filler)
-//            it.add(filler)
-//            it.add(filler)
         }
     }
 
