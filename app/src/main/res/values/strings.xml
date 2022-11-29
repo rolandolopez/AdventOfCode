@@ -3,6 +3,7 @@
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">Welcome to AOC 2021</string>
+    <string name="year">Year</string>
     <string name="pick_a_day">Pick a Day</string>
     <string name="run_it">Run it!</string>
 
@@ -33,5 +34,9 @@
         <item>Day 23</item>
         <item>Day 24</item>
         <item>Day 25</item>
+    </string-array>
+    <string-array name="years">
+        <item>2022</item>
+        <item>2021</item>
     </string-array>
 </resources>

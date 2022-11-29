@@ -7,6 +7,26 @@
     tools:context=".FirstFragment">
 
     <TextView
+        android:id="@+id/literal_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/year"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15" />
+
+    <Spinner
+        android:id="@+id/year_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fab_margin"
+        app:layout_constraintEnd_toEndOf="@+id/literal_year"
+        app:layout_constraintStart_toStartOf="@+id/literal_year"
+        app:layout_constraintTop_toBottomOf="@+id/literal_year" />
+
+    <TextView
         android:id="@+id/textview_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

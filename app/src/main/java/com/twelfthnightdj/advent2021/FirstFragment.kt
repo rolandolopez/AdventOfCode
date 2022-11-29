@@ -1,5 +1,6 @@
 package com.twelfthnightdj.advent2021
 
+import advent2022.day01.Y22D01
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -42,6 +43,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var _binding: FragmentFirstBinding? = null
 
     private var daySelected = 0
+    private var yearSelected = 22
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -63,6 +65,16 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
             spinner.adapter = adapter
             spinner.onItemSelectedListener = this
         }
+        val year = binding.yearSpinner
+        ArrayAdapter.createFromResource(
+            this.requireContext(),
+            R.array.years,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+            year.adapter = adapter
+            year.onItemSelectedListener = this
+        }
         return binding.root
 
     }
@@ -71,35 +83,70 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonFirst.setOnClickListener {
-            when (daySelected) {
-                1 -> runDay(Day1())
-                2 -> runDay(Day2())
-                3 -> runDay(Day3())
-                4 -> runDay(Day4())
-                5 -> runDay(Day5())
-                6 -> runDay(Day6())
-                7 -> runDay(Day7())
-                8 -> runDay(Day8())
-                9 -> runDay(Day9())
-                10 -> runDay(Day10())
-                11 -> runDay(Day11())
-                12 -> runDay(Day12())
-                13 -> runDay(Day13())
-                14 -> runDay(Day14())
-                15 -> runDay(Day15())
-                16 -> runDay(Day16())
-                17 -> runDay(Day17())
-                18 -> runDay(Day18())
-                20 -> runDay(Day20())
-                21 -> runDay(Day21())
-                22 -> runDay(Day22())
-
-                else -> {
-                }
+            when (yearSelected) {
+                21 -> y2021()
+                22 -> y2022()
             }
         }
         binding.daySpinner.setSelection(min(Calendar.getInstance().get(DAY_OF_MONTH), 25), true)
     }
+
+    private fun y2021() =
+        when (daySelected) {
+            1 -> runDay(Day1())
+            2 -> runDay(Day2())
+            3 -> runDay(Day3())
+            4 -> runDay(Day4())
+            5 -> runDay(Day5())
+            6 -> runDay(Day6())
+            7 -> runDay(Day7())
+            8 -> runDay(Day8())
+            9 -> runDay(Day9())
+            10 -> runDay(Day10())
+            11 -> runDay(Day11())
+            12 -> runDay(Day12())
+            13 -> runDay(Day13())
+            14 -> runDay(Day14())
+            15 -> runDay(Day15())
+            16 -> runDay(Day16())
+            17 -> runDay(Day17())
+            18 -> runDay(Day18())
+            20 -> runDay(Day20())
+            21 -> runDay(Day21())
+            22 -> runDay(Day22())
+
+            else -> {
+            }
+        }
+
+    private fun y2022() =
+        when (daySelected) {
+            1 -> runDay(Y22D01())
+            2 -> runDay(Day2())
+            3 -> runDay(Day3())
+            4 -> runDay(Day4())
+            5 -> runDay(Day5())
+            6 -> runDay(Day6())
+            7 -> runDay(Day7())
+            8 -> runDay(Day8())
+            9 -> runDay(Day9())
+            10 -> runDay(Day10())
+            11 -> runDay(Day11())
+            12 -> runDay(Day12())
+            13 -> runDay(Day13())
+            14 -> runDay(Day14())
+            15 -> runDay(Day15())
+            16 -> runDay(Day16())
+            17 -> runDay(Day17())
+            18 -> runDay(Day18())
+            20 -> runDay(Day20())
+            21 -> runDay(Day21())
+            22 -> runDay(Day22())
+
+            else -> {
+            }
+        }
+
 
     @SuppressLint("SetTextI18n")
     private fun runDay(day: AocDays) {
@@ -118,8 +165,18 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-        daySelected = pos
+        when(parent?.id) {
+            binding.daySpinner.id -> daySelected = pos
+            binding.yearSpinner.id -> yearSelected = year(pos)
+        }
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) = Unit
+
+    private fun year(pos: Int) =
+        when(pos) {
+            0 -> 22
+            1 -> 21
+            else -> 22
+        }
 }
