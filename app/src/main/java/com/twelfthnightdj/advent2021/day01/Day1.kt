@@ -8,10 +8,12 @@ class Day1 : AocDays() {
     override var dayId = 1
 
     override fun partA(): String {
+        val localInput = input.map { it.toInt() }
         return countIt(localInput).toString()
     }
 
     override fun partB(): String {
+        val localInput = input.map { it.toInt() }
         val mappedInput = localInput.mapIndexed { index, value ->
             val second = if ((index + 1) >= localInput.size) 0 else localInput[index + 1]
             val third = if ((index + 2) >= localInput.size) 0 else localInput[index + 2]
@@ -31,6 +33,4 @@ class Day1 : AocDays() {
         }
         return counter
     }
-
-    val localInput = input.map { it.toInt() }
 }

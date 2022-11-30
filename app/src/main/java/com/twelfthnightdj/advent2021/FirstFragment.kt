@@ -83,73 +83,54 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonFirst.setOnClickListener {
-            when (yearSelected) {
+            val  day: AocDays? = when (yearSelected) {
                 21 -> y2021()
                 22 -> y2022()
+                else -> null
             }
+            day?.let { runDay(it) }
         }
         binding.daySpinner.setSelection(min(Calendar.getInstance().get(DAY_OF_MONTH), 25), true)
     }
 
     private fun y2021() =
         when (daySelected) {
-            1 -> runDay(Day1())
-            2 -> runDay(Day2())
-            3 -> runDay(Day3())
-            4 -> runDay(Day4())
-            5 -> runDay(Day5())
-            6 -> runDay(Day6())
-            7 -> runDay(Day7())
-            8 -> runDay(Day8())
-            9 -> runDay(Day9())
-            10 -> runDay(Day10())
-            11 -> runDay(Day11())
-            12 -> runDay(Day12())
-            13 -> runDay(Day13())
-            14 -> runDay(Day14())
-            15 -> runDay(Day15())
-            16 -> runDay(Day16())
-            17 -> runDay(Day17())
-            18 -> runDay(Day18())
-            20 -> runDay(Day20())
-            21 -> runDay(Day21())
-            22 -> runDay(Day22())
+            1 -> Day1()
+            2 -> Day2()
+            3 -> Day3()
+            4 -> Day4()
+            5 -> Day5()
+            6 -> Day6()
+            7 -> Day7()
+            8 -> Day8()
+            9 -> Day9()
+            10 -> Day10()
+            11 -> Day11()
+            12 -> Day12()
+            13 -> Day13()
+            14 -> Day14()
+            15 -> Day15()
+            16 -> Day16()
+            17 -> Day17()
+            18 -> Day18()
+            20 -> Day20()
+            21 -> Day21()
+            22 -> Day22()
+            else -> null
 
-            else -> {
-            }
         }
 
     private fun y2022() =
         when (daySelected) {
-            1 -> runDay(Y22D01())
-            2 -> runDay(Day2())
-            3 -> runDay(Day3())
-            4 -> runDay(Day4())
-            5 -> runDay(Day5())
-            6 -> runDay(Day6())
-            7 -> runDay(Day7())
-            8 -> runDay(Day8())
-            9 -> runDay(Day9())
-            10 -> runDay(Day10())
-            11 -> runDay(Day11())
-            12 -> runDay(Day12())
-            13 -> runDay(Day13())
-            14 -> runDay(Day14())
-            15 -> runDay(Day15())
-            16 -> runDay(Day16())
-            17 -> runDay(Day17())
-            18 -> runDay(Day18())
-            20 -> runDay(Day20())
-            21 -> runDay(Day21())
-            22 -> runDay(Day22())
+            1 -> Y22D01()
+            else -> null
 
-            else -> {
-            }
         }
 
 
     @SuppressLint("SetTextI18n")
     private fun runDay(day: AocDays) {
+        day.yearId = yearSelected
         val partA = day.partA()
         day.reset()
         val partB = day.partB()
