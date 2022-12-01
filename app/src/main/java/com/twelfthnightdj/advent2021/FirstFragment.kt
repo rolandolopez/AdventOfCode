@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.twelfthnightdj.advent2021.databinding.FragmentFirstBinding
 import com.twelfthnightdj.advent2021.day01.Day1
@@ -83,12 +84,16 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonFirst.setOnClickListener {
-            val  day: AocDays? = when (yearSelected) {
+            val day: AocDays? = when (yearSelected) {
                 21 -> y2021()
                 22 -> y2022()
                 else -> null
             }
-            day?.let { runDay(it) }
+            day?.let { runDay(it) } ?: Toast.makeText(
+                requireContext(),
+                "You haven't made this yet",
+                Toast.LENGTH_LONG
+            ).show()
         }
         binding.daySpinner.setSelection(min(Calendar.getInstance().get(DAY_OF_MONTH), 25), true)
     }
@@ -146,7 +151,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-        when(parent?.id) {
+        when (parent?.id) {
             binding.daySpinner.id -> daySelected = pos
             binding.yearSpinner.id -> yearSelected = year(pos)
         }
@@ -155,7 +160,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onNothingSelected(p0: AdapterView<*>?) = Unit
 
     private fun year(pos: Int) =
-        when(pos) {
+        when (pos) {
             0 -> 22
             1 -> 21
             else -> 22
