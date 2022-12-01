@@ -2,7 +2,7 @@
     <string name="app_name">Advent 2021</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">Welcome to AOC 2021</string>
+    <string name="first_fragment_label">Welcome to Advent of Code</string>
     <string name="year">Year</string>
     <string name="pick_a_day">Pick a Day</string>
     <string name="run_it">Run it!</string>
