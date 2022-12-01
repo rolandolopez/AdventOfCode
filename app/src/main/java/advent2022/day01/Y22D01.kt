@@ -21,6 +21,20 @@ class Y22D01 : AocDays() {
     }
 
     override fun partB(): String {
-        return "2022 part B"
+        var highestTotal = 0
+        var localTotal = 0
+        val elves = mutableListOf<Int>()
+        input.forEach { calories ->
+            if (calories.isEmpty()) {
+                elves.add(localTotal)
+                localTotal = 0
+            } else {
+                localTotal += calories.toInt()
+            }
+        }
+        elves.add(localTotal)
+        elves.sortDescending()
+        val topThree = elves[0] + elves[1] + elves[2]
+        return "$topThree"
     }
 }
