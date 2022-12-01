@@ -21,7 +21,6 @@ class Y22D01 : AocDays() {
     }
 
     override fun partB(): String {
-        var highestTotal = 0
         var localTotal = 0
         val elves = mutableListOf<Int>()
         input.forEach { calories ->
@@ -33,8 +32,7 @@ class Y22D01 : AocDays() {
             }
         }
         elves.add(localTotal)
-        elves.sortDescending()
-        val topThree = elves[0] + elves[1] + elves[2]
+        val topThree = elves.sortedDescending().take(3).sum()
         return "$topThree"
     }
 }
