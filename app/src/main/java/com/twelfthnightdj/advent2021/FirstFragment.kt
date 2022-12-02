@@ -1,6 +1,7 @@
 package com.twelfthnightdj.advent2021
 
 import advent2022.day01.Y22D01
+import advent2022.day02.Y22D02
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -128,6 +129,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun y2022() =
         when (daySelected) {
             1 -> Y22D01()
+            2 -> Y22D02()
             else -> null
 
         }
