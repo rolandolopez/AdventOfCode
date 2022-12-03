@@ -8,7 +8,6 @@ class Y22D03 : AocDays() {
     override fun partA(): String {
         val holder = mutableListOf<Char>()
         input.forEach { sack ->
-            println(sack.length)
             val firstHalf = sack.take(sack.length/2).toCharArray().map { it.toString() }
             val secondHalf = sack.takeLast(sack.length/2)
             run search@{
@@ -36,6 +35,21 @@ class Y22D03 : AocDays() {
     }
 
     override fun partB(): String {
-        return super.partB()
+        var sum = 0L
+        val workingList = input.toMutableList()
+        val holder = mutableListOf<Char>()
+        while(workingList.isNotEmpty()) {
+            val trifecta = workingList.take(3).map { it.toCharArray() }
+            val intersection = (trifecta[0] intersect trifecta[1].toSet()) intersect trifecta[2].toSet()
+            holder.add(intersection.first())
+            workingList.removeFirst()
+            workingList.removeFirst()
+            workingList.removeFirst()
+        }
+
+        holder.forEach {
+            sum += priorityScore(it)
+        }
+        return "$sum"
     }
 }
