@@ -8,16 +8,9 @@ class Y22D03 : AocDays() {
     override fun partA(): String {
         val holder = mutableListOf<Char>()
         input.forEach { sack ->
-            val firstHalf = sack.take(sack.length/2).toCharArray().map { it.toString() }
-            val secondHalf = sack.takeLast(sack.length/2)
-            run search@{
-                firstHalf.forEach {
-                    if (secondHalf.contains(it)) {
-                        holder.add(it.toCharArray().first())
-                        return@search
-                    }
-                }
-            }
+            val firstHalf = sack.take(sack.length/2).toCharArray()
+            val secondHalf = sack.takeLast(sack.length/2).toSet()
+            holder.add((firstHalf intersect secondHalf).first())
         }
         var sum = 0L
         holder.forEach {
