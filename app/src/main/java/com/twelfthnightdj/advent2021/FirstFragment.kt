@@ -3,6 +3,7 @@ package com.twelfthnightdj.advent2021
 import advent2022.day01.Y22D01
 import advent2022.day02.Y22D02
 import advent2022.day03.Y22D03
+import advent2022.day04.Y22D04
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -132,6 +133,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
             1 -> Y22D01()
             2 -> Y22D02()
             3 -> Y22D03()
+            4 -> Y22D04()
             else -> null
 
         }
