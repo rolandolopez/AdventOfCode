@@ -14,10 +14,6 @@ class Y22D02 :AocDays() {
         }
     }
 
-    init {
-        setup()
-    }
-
     override fun partA(): String {
         rounds.forEach {
             total += fightA(it.first, it.second)

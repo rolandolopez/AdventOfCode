@@ -144,6 +144,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
     @SuppressLint("SetTextI18n")
     private fun runDay(day: AocDays) {
         day.yearId = yearSelected
+        day.setup()
         val partA = day.partA()
         day.reset()
         val partB = day.partB()
