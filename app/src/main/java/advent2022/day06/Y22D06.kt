@@ -5,10 +5,6 @@ import com.twelfthnightdj.advent2021.AocDays
 class Y22D06 : AocDays() {
     override var dayId = 6
 
-    override fun setup() {
-        super.setup()
-    }
-
     override fun partA(): String {
         return "${ checkIt(inputAsString, 4) }"
     }
@@ -25,10 +21,7 @@ class Y22D06 : AocDays() {
     }
 
     override fun partB(): String {
-        return super.partB()
+        return "${checkIt(inputAsString, 14)}"
     }
 
-    override fun reset() {
-        super.reset()
-    }
 }
