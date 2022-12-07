@@ -11,16 +11,15 @@ class Y22D07 : AocDays() {
 
     override fun setup() {
         allDirectories.add(rootDirectory)
-        super.setup()
-    }
-
-    override fun partA(): String {
         input.forEach { line ->
             when {
                 line.startsWith("$ ") -> processUserInput(line)
                 else -> processOther(line)
             }
         }
+    }
+
+    override fun partA(): String {
         var totalOver = 0L
         var lessThan = 0
         allDirectories.forEach { d ->
@@ -28,13 +27,8 @@ class Y22D07 : AocDays() {
             if (tot <= 100000L) {
                 totalOver += tot
                 lessThan++
-                println("d size (${d.name}): $tot  <---------")
-            } else {
-                println("d size (${d.name}): $tot")
             }
         }
-        println("directories: ${allDirectories.size}")
-        println("less than 100000: $lessThan")
         return totalOver.toString()
     }
 
@@ -66,10 +60,13 @@ class Y22D07 : AocDays() {
     }
 
     override fun partB(): String {
-        return super.partB()
-    }
+        val totalSpace = 70000000L
+        val totalUsed = rootDirectory.totalSize
+        val freeSpace = totalSpace - totalUsed
+        val spaceNeeded = 30000000L - freeSpace
 
-    override fun reset() {
-        super.reset()
+        return allDirectories.sortedBy { it.totalSize }.first {
+            it.totalSize > spaceNeeded
+        }.totalSize.toString()
     }
 }
