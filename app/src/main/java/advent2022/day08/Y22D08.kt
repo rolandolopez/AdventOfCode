@@ -6,6 +6,7 @@ class Y22D08 : AocDays() {
     override var dayId = 8
     private lateinit var field: IntRectArray
     var theInput = input
+
     override fun setup() {
         field = IntRectArray(theInput.first().length, theInput.size)
         theInput.forEachIndexed { rowNum, line ->
@@ -142,9 +143,5 @@ class Y22D08 : AocDays() {
             }
         }
         return highestCount.toString()
-    }
-
-    override fun reset() {
-        super.reset()
     }
 }
