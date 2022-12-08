@@ -4,7 +4,7 @@ import com.twelfthnightdj.advent2021.AocDays
 
 class Y22D08 : AocDays() {
     override var dayId = 8
-    lateinit var field: IntRectArray
+    private lateinit var field: IntRectArray
     var theInput = input
     override fun setup() {
         field = IntRectArray(theInput.first().length, theInput.size)
@@ -34,7 +34,7 @@ class Y22D08 : AocDays() {
 
     private fun lookUp(row: Int, col: Int): Boolean {
         val needle = field.get(row, col)
-        (0 until row).forEach { r ->
+        for(r in (0 until row).reversed()) {
             if (field.get(r, col) >= needle) return false
         }
         return true
@@ -50,7 +50,7 @@ class Y22D08 : AocDays() {
 
     private fun lookLeft(row: Int, col: Int): Boolean {
         val needle = field.get(row, col)
-        (0 until col).forEach { c ->
+        for (c in (0 until col).reversed()) {
             if (field.get(row, c) >= needle) return false
         }
         return true
