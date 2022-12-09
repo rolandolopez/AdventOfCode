@@ -77,7 +77,7 @@ class Snake(var x: Int, var y: Int) {
 class Point(var x: Int, var y: Int) {
     override fun equals(other: Any?): Boolean {
         other as Point
-        return (x == other.x && y == other.y).also { println("$x, $y already exists") }
+        return x == other.x && y == other.y
     }
 
     override fun toString(): String {
