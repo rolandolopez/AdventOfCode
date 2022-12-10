@@ -4,7 +4,7 @@ import com.twelfthnightdj.advent2021.AocDays
 
 class Y22D09 : AocDays() {
     override var dayId = 9
-    var theInput = input
+    var theInput = trialInput
     var directions = mutableListOf<Pair<String, Int>>()
     var snake = Snake(0,0)
 
@@ -19,12 +19,17 @@ class Y22D09 : AocDays() {
         directions.forEach {
             snake.moveHead(it)
         }
-        println("snake: ${snake.tailTrack}")
         return snake.tailTrack.size.toString()
     }
 
     override fun partB(): String {
-        return super.partB()
+        val megaSnake = MegaSnake(0,0,9)
+        directions.forEach {
+            megaSnake.moveHead(it)
+            println("head (${megaSnake.all.first().head}), tail (${megaSnake.all.last().tail}) ($it): ${megaSnake.finalCheck()}")
+        }
+        megaSnake.printAll()
+        return megaSnake.finalCheck()
     }
 
     override fun reset() {

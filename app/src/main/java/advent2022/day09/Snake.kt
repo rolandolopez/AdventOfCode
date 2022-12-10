@@ -5,11 +5,10 @@ class Snake(var x: Int, var y: Int) {
     var tail = Point(x, y)
     var tailTrack = mutableSetOf(tail)
 
-    fun resetToPoint(newX: Int, newY: Int) {
-        head.x = newX
-        head.y = newY
-        tail.x = newX
-        tail.y = newY
+    fun moveToPoint(newPoint: Point) {
+        head.x = newPoint.x
+        head.y = newPoint.y
+        moveTail()
     }
 
     fun moveHead(instruction: Pair<String, Int>) {
@@ -21,28 +20,28 @@ class Snake(var x: Int, var y: Int) {
         }
     }
 
-    private fun moveUp(distance: Int) {
+    fun moveUp(distance: Int) {
         repeat(distance) {
             head.x++
             moveTail()
         }
     }
 
-    private fun moveDown(distance: Int) {
+    fun moveDown(distance: Int) {
         repeat(distance) {
             head.x--
             moveTail()
         }
     }
 
-    private fun moveRight(distance: Int) {
+    fun moveRight(distance: Int) {
         repeat(distance) {
             head.y++
             moveTail()
         }
     }
 
-    private fun moveLeft(distance: Int) {
+    fun moveLeft(distance: Int) {
         repeat(distance) {
             head.y--
             moveTail()
