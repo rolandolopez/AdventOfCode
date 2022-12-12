@@ -18,13 +18,11 @@ class Y22D11 : AocDays() {
                     }
                 }
                 line.startsWith("  Operation: ") -> {
-                    line.removePrefix("  Operation: new = old ").split(" ").forEach {
-                        when (it) {
-                            "old" -> currentMonkey.operation = Operation.SQUARE
-                            "+" -> currentMonkey.operation = Operation.ADD
-                            "*" -> currentMonkey.operation = Operation.MULTIPLY
-                            else -> currentMonkey.operand = it.toLong()
-                        }
+                    val op = line.substringAfterLast(" ")
+                    currentMonkey.operation = when {
+                        line.contains("+") -> ({it + op.toLong()})
+                        op == "old" -> ({it * it})
+                        else -> ({it * op.toLong()})
                     }
                 }
                 line.startsWith("  Test: divisible by ") -> {
@@ -46,12 +44,8 @@ class Y22D11 : AocDays() {
     override fun partA(): String {
         repeat(20) {
             zoo.forEach {
-                it.inspectItems("A")
+                it.inspectItems { it1 -> it1 / 3 }
             }
-        }
-        println("afterward")
-        zoo.forEach {
-            println(it)
         }
         return getAnswer().toString()
     }
@@ -65,16 +59,13 @@ class Y22D11 : AocDays() {
     }
 
     override fun partB(): String {
-        repeat(20) {
+        val testProduct = zoo.map { it.testDivisor }.reduce(Long::times)
+        repeat(10000) {
             zoo.forEach {
-                it.inspectItems("B")
+                it.inspectItems { it1 -> it1 % testProduct }
             }
         }
-        println("afterward")
-        zoo.forEach {
-            println(it)
-        }
-        return super.partB()
+        return getAnswer().toString()
     }
 
     override fun reset() {

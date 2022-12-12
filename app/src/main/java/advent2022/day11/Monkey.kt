@@ -2,7 +2,7 @@ package advent2022.day11
 
 class Monkey(private val zoo: List<Monkey>) {
     private var items = mutableListOf<Long>()
-    var operation: Operation = Operation.ADD
+    lateinit var operation: (Long) -> Long
     var operand = 0L
     var testDivisor = 1L
     var ifTrue = 0
@@ -14,25 +14,18 @@ class Monkey(private val zoo: List<Monkey>) {
         items.add(item)
     }
 
-    fun inspectItems(part: String) {
+    fun inspectItems(changeToWorryLevel: (Long) -> Long) {
         itemsInpected += items.size
-        while (items.isNotEmpty()) {
-            var item = items.removeFirst()
-            item = when (operation) {
-                Operation.ADD -> item + operand
-                Operation.MULTIPLY -> item * operand
-                Operation.SQUARE -> item * item
-            }
-            if (part == "A") {
-                item /= 3
-            }
+        items.forEach { item ->
+            val worry = changeToWorryLevel(operation(item))
 
-            if (item % testDivisor == 0L) {
-                zoo[ifTrue].catchItem(item)
+            if (worry % testDivisor == 0L) {
+                zoo[ifTrue].catchItem(worry)
             } else {
-                zoo[ifFalse].catchItem(item)
+                zoo[ifFalse].catchItem(worry)
             }
         }
+        items.clear()
     }
 
     override fun toString(): String {
