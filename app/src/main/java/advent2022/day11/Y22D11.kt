@@ -13,7 +13,7 @@ class Y22D11 : AocDays() {
                     currentMonkey = Monkey(zoo)
                 }
                 line.startsWith("  Starting items: ") -> {
-                    line.removePrefix("  Starting items: ").split(", ").map { it.toInt() }.forEach {
+                    line.removePrefix("  Starting items: ").split(", ").map { it.toLong() }.forEach {
                         currentMonkey.catchItem(it)
                     }
                 }
@@ -23,12 +23,12 @@ class Y22D11 : AocDays() {
                             "old" -> currentMonkey.operation = Operation.SQUARE
                             "+" -> currentMonkey.operation = Operation.ADD
                             "*" -> currentMonkey.operation = Operation.MULTIPLY
-                            else -> currentMonkey.operand = it.toInt()
+                            else -> currentMonkey.operand = it.toLong()
                         }
                     }
                 }
                 line.startsWith("  Test: divisible by ") -> {
-                    currentMonkey.testDivisor = line.removePrefix("  Test: divisible by ").toInt()
+                    currentMonkey.testDivisor = line.removePrefix("  Test: divisible by ").toLong()
                 }
                 line.startsWith("    If true: throw to monkey ") ->
                     currentMonkey.ifTrue = line.removePrefix("    If true: throw to monkey ").toInt()
@@ -46,26 +46,40 @@ class Y22D11 : AocDays() {
     override fun partA(): String {
         repeat(20) {
             zoo.forEach {
-                it.inspectItems()
+                it.inspectItems("A")
             }
         }
         println("afterward")
         zoo.forEach {
             println(it)
         }
-        var product = 1
+        return getAnswer().toString()
+    }
+
+    private fun getAnswer(): Long {
+        var product = 1L
         zoo.sortedByDescending { it.itemsInpected }.take(2).forEach {
             product *= it.itemsInpected
         }
-        return product.toString()
+        return product
     }
 
     override fun partB(): String {
+        repeat(20) {
+            zoo.forEach {
+                it.inspectItems("B")
+            }
+        }
+        println("afterward")
+        zoo.forEach {
+            println(it)
+        }
         return super.partB()
     }
 
     override fun reset() {
-        super.reset()
+        zoo.clear()
+        setup()
     }
 }
 

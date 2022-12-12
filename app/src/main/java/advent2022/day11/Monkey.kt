@@ -1,20 +1,20 @@
 package advent2022.day11
 
 class Monkey(private val zoo: List<Monkey>) {
-    private var items = mutableListOf<Int>()
+    private var items = mutableListOf<Long>()
     var operation: Operation = Operation.ADD
-    var operand = 0
-    var testDivisor = 1
+    var operand = 0L
+    var testDivisor = 1L
     var ifTrue = 0
     var ifFalse = 0
     var monkeyNum = zoo.size
-    var itemsInpected = 0
+    var itemsInpected = 0L
 
-    fun catchItem(item: Int) {
+    fun catchItem(item: Long) {
         items.add(item)
     }
 
-    fun inspectItems() {
+    fun inspectItems(part: String) {
         itemsInpected += items.size
         while (items.isNotEmpty()) {
             var item = items.removeFirst()
@@ -23,9 +23,11 @@ class Monkey(private val zoo: List<Monkey>) {
                 Operation.MULTIPLY -> item * operand
                 Operation.SQUARE -> item * item
             }
-            item /= 3
+            if (part == "A") {
+                item /= 3
+            }
 
-            if (item % testDivisor == 0) {
+            if (item % testDivisor == 0L) {
                 zoo[ifTrue].catchItem(item)
             } else {
                 zoo[ifFalse].catchItem(item)
