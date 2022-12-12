@@ -4,6 +4,7 @@ import com.twelfthnightdj.advent2021.util.InputHelpers
 
 abstract class AocDays {
     open var dayId = 0
+    var useTrialInput = false
     open var yearId = 22
     open fun setup() {}
     open fun partA(): String = ""
@@ -23,13 +24,17 @@ abstract class AocDays {
         return InputHelpers.getListOfStringsFromFile("/${yearId}/day${dayId}.txt")
     }
 
-    val trialInputAsString
-        get() = loadTrialInputAsString()
     val inputAsString
-        get() = loadInputAsString()
+        get() = if (useTrialInput) {
+            loadTrialInputAsString()
+        } else {
+            loadInputAsString()
+        }
 
-    val trialInput
-        get() = loadTrialInputAsList()
     val input
-        get() = loadInputAsList()
+        get() = if (useTrialInput) {
+            loadTrialInputAsList()
+        } else {
+            loadInputAsList()
+        }
 }

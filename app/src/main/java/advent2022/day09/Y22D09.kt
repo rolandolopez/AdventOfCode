@@ -4,12 +4,11 @@ import com.twelfthnightdj.advent2021.AocDays
 
 class Y22D09 : AocDays() {
     override var dayId = 9
-    var theInput = trialInput
     var directions = mutableListOf<Pair<String, Int>>()
     var snake = Snake(0,0)
 
     override fun setup() {
-        theInput.forEach { line ->
+        input.forEach { line ->
             val (s, i) = line.split(" ")
             directions.add(Pair(s, i.toInt()))
         }

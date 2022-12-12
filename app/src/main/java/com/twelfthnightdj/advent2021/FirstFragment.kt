@@ -156,6 +156,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
     @SuppressLint("SetTextI18n")
     private fun runDay(day: AocDays) {
         day.yearId = yearSelected
+        day.useTrialInput = binding.swTrialInput.isChecked
         day.setup()
         val partA = day.partA()
         day.reset()

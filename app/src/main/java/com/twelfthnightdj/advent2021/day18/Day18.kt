@@ -10,7 +10,7 @@ class Day18 : AocDays() {
 
     override fun partA(): String {
         val numbers = mutableListOf<SnailfishNumber>()
-        trialInput.forEach {
+        input.forEach {
             numbers.add(process(it))
         }
 
@@ -87,7 +87,7 @@ class Day18 : AocDays() {
     private fun startNumber(ipt: String, parent: SnailfishNumber? = null): SnailfishNumber {
         currentIndex++
         var isLeft = true
-        var n = SnailfishNumber(parent)
+        val n = SnailfishNumber(parent)
         while (true) {
             when (ipt[currentIndex]) {
                 '[' -> {

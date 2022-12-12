@@ -11,11 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/year"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/fab_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintTop_toBottomOf="@id/swTrialInput"/>
 
     <Spinner
         android:id="@+id/year_spinner"
@@ -31,21 +30,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pick_a_day"
-        app:layout_constraintBottom_toTopOf="@id/button_first"
+        android:layout_marginTop="@dimen/ui_spacing"
+        app:layout_constraintTop_toBottomOf="@id/year_spinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
         android:id="@+id/day_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/fab_margin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_first"
-        app:layout_constraintBottom_toTopOf="@id/button_first">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textview_first">
 
     </Spinner>
+
     <Button
         android:id="@+id/button_first"
         android:layout_width="wrap_content"
@@ -55,20 +55,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textview_first" />
+
     <TextView
         android:id="@+id/tvAnswerA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/answer_for_part_a"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_first"
-        android:text="Answer for A" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_first" />
+
     <TextView
         android:id="@+id/tvAnswerB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/answer_for_part_b"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvAnswerA"
-        android:text="Answer for B" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAnswerA" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/swTrialInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/use_trial_input"
+        android:paddingEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

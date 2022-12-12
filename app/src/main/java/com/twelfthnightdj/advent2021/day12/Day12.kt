@@ -2,7 +2,6 @@ package com.twelfthnightdj.advent2021.day12
 
 import android.util.MutableBoolean
 import com.twelfthnightdj.advent2021.AocDays
-import com.twelfthnightdj.advent2021.util.InputHelpers
 
 class Day12 : AocDays() {
     override var dayId = 12
@@ -12,7 +11,7 @@ class Day12 : AocDays() {
     private var doubleVisit = MutableBoolean(false)
 
     override fun partA(): String {
-        processInput(trialInput)
+        processInput(input)
         val startCave = caves.values.first { it.name == "start" }
         val endCave = caves.values.first { it.name == "end" }
         printAllPathsA(startCave, endCave)
@@ -106,7 +105,13 @@ class Day12 : AocDays() {
         u.connections.forEach { connectedCave ->
             if (!isVisited.contains(connectedCave) || (isVisited.contains(connectedCave) && !hasVisitedTwice.value)) {
                 println("connectCave: $connectedCave")
-                println("${!isVisited.contains(connectedCave)} || (${isVisited.contains(connectedCave)} && ${!hasVisitedTwice.value})")
+                println(
+                    "${!isVisited.contains(connectedCave)} || (${
+                        isVisited.contains(
+                            connectedCave
+                        )
+                    } && ${!hasVisitedTwice.value})"
+                )
                 if (isVisited.contains(connectedCave)) {
                     hasVisitedTwice.value = true
                 }
@@ -130,23 +135,30 @@ class Day12 : AocDays() {
     fun parse(ipt: List<String>) = buildMap<String, Iterable<String>> {
         ipt.map { it.split("-") }
             .forEach { (v1, v2) ->
-                compute(v1) { _, l-> (l ?: hashSetOf()) + v2 }
-                compute(v2) { _, l-> (l ?: hashSetOf()) + v1 }
+                compute(v1) { _, l -> (l ?: hashSetOf()) + v2 }
+                compute(v2) { _, l -> (l ?: hashSetOf()) + v1 }
             }
     }
 
-    fun calculateAll(
+    private fun calculateAll(
         edges: Map<String, Iterable<String>>,
         current: String = "start",
         visited: Collection<String> = hashSetOf(current),
         canVisitTwice: Boolean = false
-    ): Int = edges[current]!!.sumOf { next -> when {
-        next == "end" -> 1
-        next.first().isUpperCase() -> calculateAll(edges, next, visited + current, canVisitTwice)
-        next !in visited -> calculateAll(edges, next, visited + current, canVisitTwice)
-        canVisitTwice && next != "start" -> calculateAll(edges, next, visited + current, false)
-        else -> 0
-    } }
+    ): Int = edges[current]!!.sumOf { next ->
+        when {
+            next == "end" -> 1
+            next.first().isUpperCase() -> calculateAll(
+                edges,
+                next,
+                visited + current,
+                canVisitTwice
+            )
+            next !in visited -> calculateAll(edges, next, visited + current, canVisitTwice)
+            canVisitTwice && next != "start" -> calculateAll(edges, next, visited + current, false)
+            else -> 0
+        }
+    }
 
     enum class VisitedStatus {
         NEVER,

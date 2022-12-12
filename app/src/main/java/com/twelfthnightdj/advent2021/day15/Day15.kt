@@ -13,7 +13,7 @@ class Day15 : AocDays() {
     var lowestRoute = Int.MAX_VALUE
 
     override fun partA(): String {
-        field = processInput(trialInput)
+        field = processInput(input)
         maxX = field.size
         maxY = field[0].size
         val targetX = maxX - 1

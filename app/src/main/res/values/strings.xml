@@ -6,6 +6,9 @@
     <string name="year">Year</string>
     <string name="pick_a_day">Pick a Day</string>
     <string name="run_it">Run it!</string>
+    <string name="answer_for_part_a">Answer for Part A</string>
+    <string name="answer_for_part_b">Answer for Part B</string>
+    <string name="use_trial_input">Use Trial Input</string>
 
     <string-array name="days">
         <item>Select a Day</item>
