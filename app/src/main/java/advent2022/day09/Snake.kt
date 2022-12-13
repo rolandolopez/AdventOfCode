@@ -1,5 +1,8 @@
 package advent2022.day09
 
+import kotlin.math.abs
+import kotlin.math.min
+
 class Snake(var x: Int, var y: Int) {
     var head = Point(x, y)
     var tail = Point(x, y)
@@ -22,28 +25,28 @@ class Snake(var x: Int, var y: Int) {
 
     fun moveUp(distance: Int) {
         repeat(distance) {
-            head.x++
+            head.y++
             moveTail()
         }
     }
 
     fun moveDown(distance: Int) {
         repeat(distance) {
-            head.x--
+            head.y--
             moveTail()
         }
     }
 
     fun moveRight(distance: Int) {
         repeat(distance) {
-            head.y++
+            head.x++
             moveTail()
         }
     }
 
     fun moveLeft(distance: Int) {
         repeat(distance) {
-            head.y--
+            head.x--
             moveTail()
         }
     }
@@ -52,21 +55,40 @@ class Snake(var x: Int, var y: Int) {
         // horizontal
         when {
             head.x - tail.x >= 2 -> {
-                tail = Point(head.x - 1, head.y)
-
+                val newY = if (abs(tail.y - head.y) >= 2) {
+                    min(tail.y, head.y) + 1
+                } else {
+                    head.y
+                }
+                tail = Point(head.x - 1, newY)
                 tailTrack.add(tail)
             }
             tail.x - head.x >= 2 -> {
-                tail = Point(head.x + 1, head.y)
+                val newY = if (abs(tail.y - head.y) >= 2) {
+                    min(tail.y, head.y) + 1
+                } else {
+                    head.y
+                }
+                tail = Point(head.x + 1, newY)
                 tailTrack.add(tail)
             }
             // vertical
             head.y - tail.y >= 2 -> {
-                tail = Point(head.x, head.y - 1)
+                val newX = if (abs(tail.x - head.x) >= 2) {
+                    min(tail.x, head.x) + 1
+                } else {
+                    head.x
+                }
+                tail = Point(newX, head.y - 1)
                 tailTrack.add(tail)
             }
             tail.y - head.y >= 2 -> {
-                tail = Point(head.x, head.y + 1)
+                val newX = if (abs(tail.x - head.x) >= 2) {
+                    min(tail.x, head.x) + 1
+                } else {
+                    head.x
+                }
+                tail = Point(newX, head.y + 1)
                 tailTrack.add(tail)
             }
         }

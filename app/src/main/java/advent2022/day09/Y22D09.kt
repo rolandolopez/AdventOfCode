@@ -25,7 +25,6 @@ class Y22D09 : AocDays() {
         val megaSnake = MegaSnake(0,0,9)
         directions.forEach {
             megaSnake.moveHead(it)
-            println("head (${megaSnake.all.first().head}), tail (${megaSnake.all.last().tail}) ($it): ${megaSnake.finalCheck()}")
         }
         megaSnake.printAll()
         return megaSnake.finalCheck()
