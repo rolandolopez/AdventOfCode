@@ -1,6 +1,7 @@
 package advent2022.day09
 
 import kotlin.math.abs
+import kotlin.math.absoluteValue
 import kotlin.math.min
 
 class Snake(var x: Int, var y: Int) {
@@ -110,4 +111,8 @@ class Point(var x: Int, var y: Int) {
         result = 31 * result + y
         return result
     }
+
+    //Manhattan distance
+    fun distanceTo(other: Point) = (x - other.x).absoluteValue + (y - other.y).absoluteValue
+
 }
