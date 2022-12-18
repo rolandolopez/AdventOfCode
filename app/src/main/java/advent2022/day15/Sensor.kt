@@ -10,4 +10,7 @@ class Sensor (val point: Point, nearestBeacon: Point) {
         val scanWidth = distance - (point.y - y).absoluteValue
         return (point.x - scanWidth..point.x + scanWidth).takeIf { it.first <= it.last }
     }
+
+    fun isInRange(other: Point): Boolean =
+        point.distanceTo(other) < distance
 }
