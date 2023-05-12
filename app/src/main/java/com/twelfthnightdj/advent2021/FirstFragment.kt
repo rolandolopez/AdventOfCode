@@ -14,6 +14,7 @@ import advent2022.day11.Y22D11
 import advent2022.day13.Y22D13
 import advent2022.day15.Y22D15
 import advent2022.day18.Y22D18
+import advent2022.day20.Y22D20
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -154,6 +155,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
             13 -> Y22D13()
             15 -> Y22D15()
             18 -> Y22D18()
+            20 -> Y22D20()
             else -> null
 
         }
