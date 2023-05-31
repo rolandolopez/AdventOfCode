@@ -65,16 +65,16 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
-
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
         val spinner = binding.daySpinner
         ArrayAdapter.createFromResource(
             this.requireContext(),
             R.array.days,
-            android.R.layout.simple_spinner_item
+            android.R.layout.simple_spinner_item,
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
             spinner.adapter = adapter
@@ -84,14 +84,13 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
         ArrayAdapter.createFromResource(
             this.requireContext(),
             R.array.years,
-            android.R.layout.simple_spinner_item
+            android.R.layout.simple_spinner_item,
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
             year.adapter = adapter
             year.onItemSelectedListener = this
         }
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -106,7 +105,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
             day?.let { runDay(it) } ?: Toast.makeText(
                 requireContext(),
                 "You haven't made this yet",
-                Toast.LENGTH_LONG
+                Toast.LENGTH_LONG,
             ).show()
         }
         binding.daySpinner.setSelection(min(Calendar.getInstance().get(DAY_OF_MONTH), 25), true)
@@ -136,7 +135,6 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
             21 -> Day21()
             22 -> Day22()
             else -> null
-
         }
 
     private fun y2022() =
@@ -157,9 +155,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
             18 -> Y22D18()
             20 -> Y22D20()
             else -> null
-
         }
-
 
     @SuppressLint("SetTextI18n")
     private fun runDay(day: AocDays) {
