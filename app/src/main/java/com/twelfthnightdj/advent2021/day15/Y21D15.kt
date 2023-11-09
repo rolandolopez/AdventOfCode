@@ -3,7 +3,7 @@ package com.twelfthnightdj.advent2021.day15
 import android.graphics.Point
 import com.twelfthnightdj.advent2021.AocDays
 
-class Day15 : AocDays() {
+class Y21D15 : AocDays() {
 
     override var dayId = 15
 

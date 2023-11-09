@@ -1,10 +1,9 @@
 package com.twelfthnightdj.advent2021.day16
 
 import com.twelfthnightdj.advent2021.AocDays
-import com.twelfthnightdj.advent2021.util.InputHelpers
 import java.util.*
 
-class Day16 : AocDays() {
+class Y21D16 : AocDays() {
 
     override var dayId = 16
 

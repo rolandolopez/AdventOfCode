@@ -2,9 +2,8 @@ package com.twelfthnightdj.advent2021.day09
 
 import android.graphics.Point
 import com.twelfthnightdj.advent2021.AocDays
-import com.twelfthnightdj.advent2021.util.InputHelpers
 
-class Day9 : AocDays() {
+class Y21D09 : AocDays() {
     override var dayId = 9
 
     private lateinit var sanitized: List<List<Int>>

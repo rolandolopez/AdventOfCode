@@ -1,9 +1,8 @@
 package com.twelfthnightdj.advent2021.day14
 
 import com.twelfthnightdj.advent2021.AocDays
-import com.twelfthnightdj.advent2021.util.InputHelpers
 
-class Day14 : AocDays() {
+class Y21D14 : AocDays() {
     override var dayId = 14
 
     private var seed = mutableListOf<String>()

@@ -2,7 +2,7 @@ package com.twelfthnightdj.advent2021.day22
 
 import com.twelfthnightdj.advent2021.AocDays
 
-class Day22 : AocDays() {
+class Y21D22 : AocDays() {
     override var dayId = 22
 
     private var cubes = mutableSetOf<String>()

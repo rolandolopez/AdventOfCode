@@ -1,9 +1,8 @@
 package com.twelfthnightdj.advent2021.day05
 
 import com.twelfthnightdj.advent2021.AocDays
-import com.twelfthnightdj.advent2021.util.InputHelpers
 
-class Day5 : AocDays() {
+class Y21D05 : AocDays() {
     override var dayId = 5
     var segments = mutableListOf<Segment>()
     var grid = mutableMapOf<Int, MutableMap<Int, Int>>()

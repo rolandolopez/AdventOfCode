@@ -2,9 +2,8 @@ package com.twelfthnightdj.advent2021.day11
 
 import android.graphics.Point
 import com.twelfthnightdj.advent2021.AocDays
-import com.twelfthnightdj.advent2021.util.InputHelpers
 
-class Day11 : AocDays() {
+class Y21D11 : AocDays() {
     override var dayId = 11
     private lateinit var ocean: MutableList<MutableList<Int>>
     private var alreadyFlashed = mutableSetOf<Point>()

@@ -3,7 +3,7 @@ package com.twelfthnightdj.advent2021.day12
 import android.util.MutableBoolean
 import com.twelfthnightdj.advent2021.AocDays
 
-class Day12 : AocDays() {
+class Y21D12 : AocDays() {
     override var dayId = 12
 
     private var caves = mutableMapOf<String, Cave>()

@@ -5,13 +5,13 @@ class Cave (val name: String) {
     val canRevisit: Boolean
         get() = name.first().isUpperCase()
 
-    var visitedState: Day12.VisitedStatus = if (name in listOf("start", "end")) Day12.VisitedStatus.DONE else Day12.VisitedStatus.NEVER
+    var visitedState: Y21D12.VisitedStatus = if (name in listOf("start", "end")) Y21D12.VisitedStatus.DONE else Y21D12.VisitedStatus.NEVER
 
     fun visit() {
-        if (visitedState == Day12.VisitedStatus.NEVER) {
-            visitedState = Day12.VisitedStatus.ONCE
-        } else if (visitedState == Day12.VisitedStatus.ONCE) {
-            visitedState = Day12.VisitedStatus.DONE
+        if (visitedState == Y21D12.VisitedStatus.NEVER) {
+            visitedState = Y21D12.VisitedStatus.ONCE
+        } else if (visitedState == Y21D12.VisitedStatus.ONCE) {
+            visitedState = Y21D12.VisitedStatus.DONE
         }
     }
 

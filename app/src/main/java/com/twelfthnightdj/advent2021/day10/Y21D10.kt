@@ -1,10 +1,9 @@
 package com.twelfthnightdj.advent2021.day10
 
 import com.twelfthnightdj.advent2021.AocDays
-import com.twelfthnightdj.advent2021.util.InputHelpers
 import com.twelfthnightdj.advent2021.util.Stack
 
-class Day10 : AocDays() {
+class Y21D10 : AocDays() {
     override var dayId = 10
 
     private val start0 = "("

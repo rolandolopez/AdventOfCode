@@ -2,7 +2,7 @@ package com.twelfthnightdj.advent2021.day20
 
 import com.twelfthnightdj.advent2021.AocDays
 
-class Day20 : AocDays() {
+class Y21D20 : AocDays() {
 
     override var dayId = 20
     private var rosetta = mutableListOf<Char>()

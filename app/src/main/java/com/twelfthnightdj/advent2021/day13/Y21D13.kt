@@ -2,9 +2,8 @@ package com.twelfthnightdj.advent2021.day13
 
 import android.graphics.Point
 import com.twelfthnightdj.advent2021.AocDays
-import com.twelfthnightdj.advent2021.util.InputHelpers
 
-class Day13 : AocDays() {
+class Y21D13 : AocDays() {
     override var dayId = 13
 
     private var points = mutableListOf<Point>()

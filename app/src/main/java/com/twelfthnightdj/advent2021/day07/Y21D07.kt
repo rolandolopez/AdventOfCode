@@ -1,10 +1,9 @@
 package com.twelfthnightdj.advent2021.day07
 
 import com.twelfthnightdj.advent2021.AocDays
-import com.twelfthnightdj.advent2021.util.InputHelpers
 import kotlin.math.abs
 
-class Day7 : AocDays() {
+class Y21D07 : AocDays() {
     override var dayId = 7
 
     var points = emptyList<Int>()

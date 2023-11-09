@@ -2,7 +2,7 @@ package com.twelfthnightdj.advent2021.day21
 
 import com.twelfthnightdj.advent2021.AocDays
 
-class Day21 : AocDays() {
+class Y21D21 : AocDays() {
     override var dayId = 21
 
     var players = mutableListOf<DiracPlayer>()

@@ -25,27 +25,27 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.twelfthnightdj.advent2021.databinding.FragmentFirstBinding
-import com.twelfthnightdj.advent2021.day01.Day1
-import com.twelfthnightdj.advent2021.day02.Day2
-import com.twelfthnightdj.advent2021.day03.Day3
-import com.twelfthnightdj.advent2021.day04.Day4
-import com.twelfthnightdj.advent2021.day05.Day5
-import com.twelfthnightdj.advent2021.day06.Day6
-import com.twelfthnightdj.advent2021.day07.Day7
-import com.twelfthnightdj.advent2021.day08.Day8
-import com.twelfthnightdj.advent2021.day09.Day9
-import com.twelfthnightdj.advent2021.day10.Day10
-import com.twelfthnightdj.advent2021.day11.Day11
-import com.twelfthnightdj.advent2021.day12.Day12
-import com.twelfthnightdj.advent2021.day13.Day13
-import com.twelfthnightdj.advent2021.day14.Day14
-import com.twelfthnightdj.advent2021.day15.Day15
-import com.twelfthnightdj.advent2021.day16.Day16
-import com.twelfthnightdj.advent2021.day17.Day17
-import com.twelfthnightdj.advent2021.day18.Day18
-import com.twelfthnightdj.advent2021.day20.Day20
-import com.twelfthnightdj.advent2021.day21.Day21
-import com.twelfthnightdj.advent2021.day22.Day22
+import com.twelfthnightdj.advent2021.day01.Y21D01
+import com.twelfthnightdj.advent2021.day02.Y21D02
+import com.twelfthnightdj.advent2021.day03.Y21D03
+import com.twelfthnightdj.advent2021.day04.Y21D04
+import com.twelfthnightdj.advent2021.day05.Y21D05
+import com.twelfthnightdj.advent2021.day06.Y21D06
+import com.twelfthnightdj.advent2021.day07.Y21D07
+import com.twelfthnightdj.advent2021.day08.Y21D08
+import com.twelfthnightdj.advent2021.day09.Y21D09
+import com.twelfthnightdj.advent2021.day10.Y21D10
+import com.twelfthnightdj.advent2021.day11.Y21D11
+import com.twelfthnightdj.advent2021.day12.Y21D12
+import com.twelfthnightdj.advent2021.day13.Y21D13
+import com.twelfthnightdj.advent2021.day14.Y21D14
+import com.twelfthnightdj.advent2021.day15.Y21D15
+import com.twelfthnightdj.advent2021.day16.Y21D16
+import com.twelfthnightdj.advent2021.day17.Y21D17
+import com.twelfthnightdj.advent2021.day18.Y21D18
+import com.twelfthnightdj.advent2021.day20.Y21D20
+import com.twelfthnightdj.advent2021.day21.Y21D21
+import com.twelfthnightdj.advent2021.day22.Y21D22
 import java.lang.Integer.min
 import java.util.*
 import java.util.Calendar.DAY_OF_MONTH
@@ -58,7 +58,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var _binding: FragmentFirstBinding? = null
 
     private var daySelected = 0
-    private var yearSelected = 22
+    private var yearSelected = 23
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -100,6 +100,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
             val day: AocDays? = when (yearSelected) {
                 21 -> y2021()
                 22 -> y2022()
+                23 -> y2023()
                 else -> null
             }
             day?.let { runDay(it) } ?: Toast.makeText(
@@ -113,27 +114,27 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private fun y2021() =
         when (daySelected) {
-            1 -> Day1()
-            2 -> Day2()
-            3 -> Day3()
-            4 -> Day4()
-            5 -> Day5()
-            6 -> Day6()
-            7 -> Day7()
-            8 -> Day8()
-            9 -> Day9()
-            10 -> Day10()
-            11 -> Day11()
-            12 -> Day12()
-            13 -> Day13()
-            14 -> Day14()
-            15 -> Day15()
-            16 -> Day16()
-            17 -> Day17()
-            18 -> Day18()
-            20 -> Day20()
-            21 -> Day21()
-            22 -> Day22()
+            1 -> Y21D01()
+            2 -> Y21D02()
+            3 -> Y21D03()
+            4 -> Y21D04()
+            5 -> Y21D05()
+            6 -> Y21D06()
+            7 -> Y21D07()
+            8 -> Y21D08()
+            9 -> Y21D09()
+            10 -> Y21D10()
+            11 -> Y21D11()
+            12 -> Y21D12()
+            13 -> Y21D13()
+            14 -> Y21D14()
+            15 -> Y21D15()
+            16 -> Y21D16()
+            17 -> Y21D17()
+            18 -> Y21D18()
+            20 -> Y21D20()
+            21 -> Y21D21()
+            22 -> Y21D22()
             else -> null
         }
 
@@ -154,6 +155,10 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
             15 -> Y22D15()
             18 -> Y22D18()
             20 -> Y22D20()
+            else -> null
+        }
+    private fun y2023() =
+        when (daySelected) {
             else -> null
         }
 
@@ -187,8 +192,9 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private fun year(pos: Int) =
         when (pos) {
-            0 -> 22
-            1 -> 21
-            else -> 22
+            0 -> 23
+            1 -> 22
+            2 -> 21
+            else -> 23
         }
 }

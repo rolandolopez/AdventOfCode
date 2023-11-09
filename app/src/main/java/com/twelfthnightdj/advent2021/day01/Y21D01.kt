@@ -3,7 +3,7 @@ package com.twelfthnightdj.advent2021.day01
 import com.twelfthnightdj.advent2021.AocDays
 
 
-class Day1 : AocDays() {
+class Y21D01 : AocDays() {
 
     override var dayId = 1
 

@@ -1,9 +1,8 @@
 package com.twelfthnightdj.advent2021.day06
 
 import com.twelfthnightdj.advent2021.AocDays
-import com.twelfthnightdj.advent2021.util.InputHelpers
 
-class Day6 : AocDays() {
+class Y21D06 : AocDays() {
     override var dayId = 6
 
     override fun partA(): String {
