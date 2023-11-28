@@ -1,5 +1,6 @@
 package com.twelfthnightdj.advent2021
 
+import advent2015.day02.Y15D02
 import advent2022.day01.Y22D01
 import advent2022.day02.Y22D02
 import advent2022.day03.Y22D03
@@ -98,6 +99,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         binding.buttonFirst.setOnClickListener {
             val day: AocDays? = when (yearSelected) {
+                15 -> y2015()
                 21 -> y2021()
                 22 -> y2022()
                 23 -> y2023()
@@ -111,6 +113,12 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
         binding.daySpinner.setSelection(min(Calendar.getInstance().get(DAY_OF_MONTH), 25), true)
     }
+
+    private fun y2015() =
+        when (daySelected) {
+            2 -> Y15D02()
+            else -> null
+        }
 
     private fun y2021() =
         when (daySelected) {
@@ -195,6 +203,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
             0 -> 23
             1 -> 22
             2 -> 21
+            3 -> 15
             else -> 23
         }
 }
