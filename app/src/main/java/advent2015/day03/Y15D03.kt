@@ -1,4 +1,4 @@
-package advent2015.advent2015.day03
+package advent2015.day03
 
 import com.twelfthnightdj.advent2021.AocDays
 

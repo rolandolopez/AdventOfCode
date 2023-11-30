@@ -1,6 +1,6 @@
 package com.twelfthnightdj.advent2021
 
-import advent2015.advent2015.day03.Y15D03
+import advent2015.day03.Y15D03
 import advent2015.day02.Y15D02
 import advent2022.day01.Y22D01
 import advent2022.day02.Y22D02
