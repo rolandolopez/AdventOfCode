@@ -7,12 +7,12 @@ class Y23D01 : AocDays() {
 
     var sum = 0
     override fun partA(): String {
-//        input.forEach { line ->
-//            val first = line.first { it.isDigit() }.toString()
-//            val last = line.last { it.isDigit() }.toString()
-//            val total = first + last
-//            sum += total.toInt()
-//        }
+        input.forEach { line ->
+            val first = line.first { it.isDigit() }.toString()
+            val last = line.last { it.isDigit() }.toString()
+            val total = first + last
+            sum += total.toInt()
+        }
         return sum.toString()
     }
 
@@ -27,17 +27,10 @@ class Y23D01 : AocDays() {
             val all = spelledOut.findAll(line)
             val lla = dellepsOut.find(line.reversed())
             val first = all.first()
-            val last = all.last()
             val tsal = lla?.value?.convert() ?: ""
-            val total = if (first.range == last.range) {
-                first.value.convert()
-            } else {
-                first.value.convert() + tsal.convert() // last.value.convert()
-            }
-            println("line: $line")
-            println("total: $total")
+            val total = first.value.convert() + tsal.convert()
+
             sum += total.toInt()
-            println("sum:           $sum")
 
         }
         return sum.toString()
