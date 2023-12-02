@@ -19,6 +19,7 @@ import advent2022.day15.Y22D15
 import advent2022.day18.Y22D18
 import advent2022.day20.Y22D20
 import advent2023.day01.Y23D01
+import advent2023.day02.Y23D02
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -173,6 +174,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun y2023() =
         when (daySelected) {
             1 -> Y23D01()
+            2 -> Y23D02()
             else -> null
         }
 
