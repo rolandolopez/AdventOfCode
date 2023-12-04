@@ -23,6 +23,19 @@ class Y23D04 : AocDays() {
     }
 
     override fun partB(): String {
-        return super.partB()
+        var allCards = (input.indices).map { 1 }.toMutableList()
+        input.forEachIndexed { index, line ->
+            val bingoLine = line.split(":\\s+".toRegex())[1]
+            val (winners, mine) = bingoLine.split(" | ").map { it.split("\\s+".toRegex()) }
+            val c = winners.filter { mine.contains(it) }.size
+            if (c > 0) {
+                var curIndex = index + 1
+                repeat(c) {
+                    allCards[curIndex] += (allCards[index])
+                    curIndex++
+                }
+            }
+        }
+        return allCards.sum().toString()
     }
 }
