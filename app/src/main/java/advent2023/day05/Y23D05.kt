@@ -18,8 +18,7 @@ class Y23D05 : AocDays() {
     var temperatureToHumidityMap = mutableMapOf<LongRange, LongRange>()
     var humidityToLocationMap = mutableMapOf<LongRange, LongRange>()
 
-    override fun partA(): String {
-
+    override fun setup() {
         var mapIndex = 0
         input.forEachIndexed { index, line ->
             if (index == 0) {
@@ -49,13 +48,16 @@ class Y23D05 : AocDays() {
         }
         humidityToLocationMap = activeMap.toMutableMap()
 
+    }
+
+    override fun partA(): String {
         println("humidity to location map: $humidityToLocationMap")
 
         GlobalScope.launch {
             val lowestLocation = plantSeed()
             println("lowest location: $lowestLocation")
         }
-        return "7"//lowestLocation.toString()
+        return "check logcat for answer"//lowestLocation.toString()
     }
 
     private suspend fun plantSeed() {
