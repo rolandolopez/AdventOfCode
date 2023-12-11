@@ -1,6 +1,7 @@
 package advent2023.day08
 
 import com.twelfthnightdj.advent2021.AocDays
+import utils.findLCM
 
 class Y23D08 : AocDays() {
     override var dayId = 8
@@ -39,7 +40,7 @@ class Y23D08 : AocDays() {
     override fun partB(): String {
         println("HELLO!")
         var starters = mutableListOf<String>()
-        var zenders = mutableListOf<Boolean>()
+        var firstZs = mutableListOf<Long>()
         input.forEachIndexed { index, line ->
             if (index == 0) {
                 steps = line
@@ -50,7 +51,7 @@ class Y23D08 : AocDays() {
                     val l = letters.value
                     if (l.last() == 'A') {
                         starters.add(l)
-                        zenders.add(false)
+                        firstZs.add(0L)
                     }
                     node.add(l)
                     letters = letters.next()
@@ -60,18 +61,20 @@ class Y23D08 : AocDays() {
         }
         var stepsTaken = 0L
         var currentIndex = 0
-        println("zenders: $zenders, false count: ${zenders.count { it }}")
-        while (zenders.any { !it }) {
+        while (true) {
             val currentStep = steps[currentIndex]
             starters.forEachIndexed { index, currentNode ->
                 val newNode = if (currentStep == 'R') map[currentNode]!!.second else map[currentNode]!!.first
                 starters[index] = newNode
-                zenders[index] = newNode.last() == 'Z'
+
+                if (newNode.last() == 'Z' && firstZs[index] == 0L) {
+                    firstZs[index] = stepsTaken + 1
+                }
             }
             currentIndex = (currentIndex + 1) % steps.length
             stepsTaken++
-            if (zenders.count { it } > 0) {
-                println("trues: ${zenders.count{ it }}")
+            if (firstZs.all { it > 0L }) {
+                return firstZs.findLCM().toString()
             }
         }
         return stepsTaken.toString()
