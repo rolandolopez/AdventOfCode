@@ -10,6 +10,7 @@ class Y23D16 : AocDays() {
     var beamsToAdd = mutableListOf<Beam>()
     var xMax = 0
     var yMax = 0
+    var initialBeams = mutableListOf<Beam>()
 
     override fun partA(): String {
         xMax = input[0].length
@@ -19,9 +20,7 @@ class Y23D16 : AocDays() {
                 field.putIfAbsent("$x#$y", LaserSquare(x, y, c))
             }
         }
-        println("field: ${field.count()}")
         beams.add(Beam(-1, 0, Direction.EAST))
-        println("xMax, yMax: $xMax, $yMax")
         while (beams.isNotEmpty()) {
             beams.forEach { beam ->
                 beam.move()
@@ -36,6 +35,58 @@ class Y23D16 : AocDays() {
         }.size.toString()
     }
 
+    override fun setup() {
+        xMax = input[0].length
+        yMax = input.size
+        input.forEachIndexed { y, line ->
+            line.forEachIndexed { x, c ->
+                field.putIfAbsent("$x#$y", LaserSquare(x, y, c))
+            }
+        }
+    }
+
+    override fun reset() {
+        field.map {
+            with(it.value) {
+                this.isEnergized = false
+                this.passedHeading.clear()
+            }
+        }
+        beams.clear()
+    }
+
+    override fun partB(): String {
+        setupInitialBeams()
+        return initialBeams.map {
+            reset()
+            beams.add(it)
+
+            while (beams.isNotEmpty()) {
+                beams.forEach { beam ->
+                    beam.move()
+                }
+                beams.removeAll { it.shouldRemove }
+                beams.addAll(beamsToAdd)
+                beamsToAdd.clear()
+            }
+            field.filterValues { square ->
+                square.isEnergized
+            }.size
+        }.maxOf { it }.toString()
+    }
+
+    private fun setupInitialBeams() {
+        // top and bottom
+        repeat(xMax) {
+            initialBeams.add(Beam(it, -1, Direction.SOUTH))
+            initialBeams.add(Beam(it, yMax + 1, Direction.NORTH))
+        }
+        // left and right
+        repeat(yMax) {
+            initialBeams.add(Beam(-1, it, Direction.EAST))
+            initialBeams.add(Beam(xMax + 1, it, Direction.WEST))
+        }
+    }
 
     inner class Beam(
         var x: Int,
@@ -69,7 +120,6 @@ class Y23D16 : AocDays() {
                         beamsToAdd.addAll(listOf(leftBeam, rightBeam))
                         square.passedHeading.add(heading)
                         this.shouldRemove = true
-//                        println("           at a horizontalMirror $square")
                     }
 
                     square.isVerticalMirror() && travellingHorizontally() -> {
@@ -78,8 +128,6 @@ class Y23D16 : AocDays() {
                         beamsToAdd.addAll(listOf(upBeam, downBeam))
                         square.passedHeading.add(heading)
                         this.shouldRemove = true
-//                        println("           at a verticalMmirror $square")
-
                     }
 
                     square.isDemocraticMirror() -> { // '\'
@@ -91,7 +139,6 @@ class Y23D16 : AocDays() {
                             Direction.WEST -> Direction.NORTH
                         }
 
-//                        println("            turning at a democratic mirror $square")
                     }
 
                     square.isRepublicanMirror() -> { // '/'
@@ -102,7 +149,6 @@ class Y23D16 : AocDays() {
                             Direction.SOUTH -> Direction.WEST
                             Direction.WEST -> Direction.SOUTH
                         }
-//                        println("            turning at a republican mirror $square")
                     }
                 }
             }
