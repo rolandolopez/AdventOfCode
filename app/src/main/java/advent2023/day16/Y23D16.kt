@@ -56,7 +56,6 @@ class Y23D16 : AocDays() {
                 square.isEnergized = true
                 when {
                     square.passedHeading.contains(heading) -> {
-                        println("removing because already did this beam: $this")
                         this.shouldRemove = true
                     }
 
@@ -84,24 +83,25 @@ class Y23D16 : AocDays() {
                     }
 
                     square.isDemocraticMirror() -> { // '\'
+                        square.passedHeading.add(heading)
                         this.heading = when (heading) {
                             Direction.NORTH -> Direction.WEST
                             Direction.EAST -> Direction.SOUTH
                             Direction.SOUTH -> Direction.EAST
                             Direction.WEST -> Direction.NORTH
                         }
-                        square.passedHeading.add(heading)
+
 //                        println("            turning at a democratic mirror $square")
                     }
 
                     square.isRepublicanMirror() -> { // '/'
+                        square.passedHeading.add(heading)
                         this.heading = when (heading) {
                             Direction.NORTH -> Direction.EAST
                             Direction.EAST -> Direction.NORTH
                             Direction.SOUTH -> Direction.WEST
                             Direction.WEST -> Direction.SOUTH
                         }
-                        square.passedHeading.add(heading)
 //                        println("            turning at a republican mirror $square")
                     }
                 }
