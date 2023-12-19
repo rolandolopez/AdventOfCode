@@ -4,6 +4,7 @@ import com.twelfthnightdj.advent2021.AocDays
 import utils.Direction
 import java.lang.Integer.max
 import java.lang.Integer.min
+import java.lang.Integer.parseInt
 
 class Y23D18 : AocDays() {
     override var dayId = 18
@@ -46,6 +47,11 @@ class Y23D18 : AocDays() {
 
         findLoop()
 
+        var insideCount = countTheInside()
+        return (lagoon.count() + insideCount).toString()
+    }
+
+    private fun countTheInside(): Int {
         var insideCount = 0
         var isInside = false
         var fromNorth = false
@@ -58,10 +64,14 @@ class Y23D18 : AocDays() {
             (xMin..xMax).forEach { x ->
                 val pipe = lagoon["$x#$y"]
                 when {
-                    pipe == null -> if (isInside) { insideCount++ }
+                    pipe == null -> if (isInside) {
+                        insideCount++
+                    }
+
                     pipe.neighbors.containsAll(listOf(Direction.NORTH, Direction.SOUTH)) -> {
                         isInside = !isInside
                     }
+
                     pipe.neighbors.containsAll(listOf(Direction.EAST, Direction.WEST)) -> {}
                     pipe.neighbors.contains(Direction.EAST) -> {
                         if (pipe.neighbors.contains(Direction.NORTH)) {
@@ -72,6 +82,7 @@ class Y23D18 : AocDays() {
                             fromSouth = true
                         }
                     }
+
                     pipe.neighbors.containsAll(listOf(Direction.WEST, Direction.NORTH)) -> {
                         if (fromSouth) {
                             isInside = !isInside
@@ -81,6 +92,7 @@ class Y23D18 : AocDays() {
                             fromNorth = false
                         }
                     }
+
                     pipe.neighbors.containsAll(listOf(Direction.WEST, Direction.SOUTH)) -> {
                         if (fromNorth) {
                             isInside = !isInside
@@ -93,7 +105,44 @@ class Y23D18 : AocDays() {
                 }
             }
         }
-        return (lagoon.count() + insideCount).toString()
+        return insideCount
+    }
+
+    override fun partB(): String {
+        lagoon["0#0"] = currentPoint.copy()
+        input.forEachIndexed { index, line ->
+            val color = line.takeLast(7).take(6)
+            val distance = parseInt(color.take(5), 16)
+            val direction = color.takeLast(1)
+            println("distance; $distance, direction: $direction")
+            repeat(distance) {
+                when (direction) {
+                    "3" -> {
+                        currentPoint.y--
+                    }
+                    "0" -> {
+                        currentPoint.x++
+                    }
+                    "1" -> {
+                        currentPoint.y++
+                    }
+                    "2" -> {
+                        currentPoint.x--
+                    }
+                }
+
+                xMin = min(xMin, currentPoint.x)
+                xMax = max(xMax, currentPoint.x)
+                yMin = min(yMin, currentPoint.y)
+                yMax = max(yMax, currentPoint.y)
+                lagoon.putIfAbsent("${currentPoint.x}#${currentPoint.y}", currentPoint.copy())
+            }
+        }
+        return super.partB()
+    }
+
+    override fun reset() {
+        lagoon.clear()
     }
 
     private fun findLoop() {
