@@ -7,6 +7,10 @@ class Y23D19 : AocDays() {
     var partSection = false
     var instructions = mutableMapOf<String, Instruction>()
     var parts = mutableSetOf<Part>()
+    var allX = mutableListOf<Int>()
+    var allM = mutableListOf<Int>()
+    var allA = mutableListOf<Int>()
+    var allS = mutableListOf<Int>()
 
     override fun setup() {
         input.forEach { line ->
@@ -28,17 +32,59 @@ class Y23D19 : AocDays() {
         return parts.filter { instructions["in"]!!.evaluate(it) }.sumOf { it.total() }.toString()
     }
 
+    override fun partB(): String {
+        (1..4000).forEach {
+            allX.add(it)
+            allM.add(it)
+            allA.add(it)
+            allS.add(it)
+        }
 
-    inner class Instruction (var name: String, var seed: String) {
+        instructions.values.forEach {
+            it.evaluateB()
+        }
+
+        return (allX.count().toLong() * allM.count().toLong() * allA.count().toLong() * allS.count().toLong()).toString()
+
+    }
+
+    inner class Instruction(var name: String, var seed: String) {
         var innerList = mutableListOf<String>()
+        val regex = "(.)(<|>)(\\d+):(.*)".toRegex()
+
         init {
             seed.split(",").map {
                 innerList.add(it)
             }
         }
 
+        //        s>2770:qs,m<1801:hdj,R
+        fun evaluateB() {
+            innerList.forEachIndexed { index, instr ->
+                if (instr.contains(":")) {
+                    val matches = regex.find(instr)!!.groupValues
+                    if (matches[2] == "<") {
+                        when (matches[1]) {
+                            "x" -> allX.removeIf { it >= matches[3].toInt() }.also { println("removing x") }
+                            "m" -> allM.removeIf { it >= matches[3].toInt() }.also { println("removing m") }
+                            "a" -> allA.removeIf { it >= matches[3].toInt() }.also { println("removing a") }
+                            "s" -> allS.removeIf { it >= matches[3].toInt() }.also { println("removing s") }
+                        }
+                    } else {
+                        when (matches[1]) {
+                            "x" -> allX.removeIf { it <= matches[3].toInt() }.also { println("removing x") }
+                            "m" -> allM.removeIf { it <= matches[3].toInt() }.also { println("removing m") }
+                            "a" -> allA.removeIf { it <= matches[3].toInt() }.also { println("removing a") }
+                            "s" -> allS.removeIf { it <= matches[3].toInt() }.also { println("removing s") }
+
+                        }
+                    }
+                }
+            }
+        }
+
         fun evaluate(part: Part): Boolean {
-            val regex =	"(.)(<|>)(\\d+):(.*)".toRegex()
+
             innerList.forEachIndexed { index, instr ->
                 if (instr == "A") return true
                 if (instr == "R") return false
@@ -57,8 +103,7 @@ class Y23D19 : AocDays() {
                     } else {
                         return@forEachIndexed
                     }
-                } else
-                    {
+                } else {
                     if (part.get(matches[1]) > matches[3].toInt()) {
                         return when (matches[4]) {
                             "A" -> true
