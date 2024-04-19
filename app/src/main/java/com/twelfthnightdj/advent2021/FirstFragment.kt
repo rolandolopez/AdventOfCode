@@ -4,6 +4,7 @@ import advent2015.day03.Y15D03
 import advent2015.day02.Y15D02
 import advent2015.day05.Y15D05
 import advent2015.day06.Y15D06
+import advent2015.day08.Y15D08
 import advent2022.day01.Y22D01
 import advent2022.day02.Y22D02
 import advent2022.day03.Y22D03
@@ -141,6 +142,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
             3 -> Y15D03()
             5 -> Y15D05()
             6 -> Y15D06()
+            8 -> Y15D08()
             else -> null
         }
 
