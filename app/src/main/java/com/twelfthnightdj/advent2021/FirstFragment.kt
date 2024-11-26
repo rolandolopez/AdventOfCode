@@ -81,7 +81,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var _binding: FragmentFirstBinding? = null
 
     private var daySelected = 0
-    private var yearSelected = 23
+    private var yearSelected = 24
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -125,6 +125,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 21 -> y2021()
                 22 -> y2022()
                 23 -> y2023()
+                24 -> y2024()
                 else -> null
             }
             day?.let { runDay(it) } ?: Toast.makeText(
@@ -213,6 +214,28 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
             19 -> Y23D19()
             else -> null
         }
+    private fun y2024() =
+        when (daySelected) {
+//            1 -> Y24D01()
+//            2 -> Y24D02()
+//            3 -> Y24D03()
+//            4 -> Y24D04()
+//            5 -> Y24D05()
+//            6 -> Y24D06()
+//            7 -> Y24D07()
+//            8 -> Y24D08()
+//            9 -> Y24D09()
+//            10 -> Y24D10()
+//            11 -> Y24D11()
+//            12 -> Y24D12()
+//            13 -> Y24D13()
+//            14 -> Y24D14()
+//            15 -> Y24D15()
+//            16 -> Y24D16()
+//            18 -> Y24D18()
+//            19 -> Y24D19()
+            else -> null
+        }
 
     @SuppressLint("SetTextI18n")
     private fun runDay(day: AocDays) {
@@ -244,10 +267,11 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private fun year(pos: Int) =
         when (pos) {
-            0 -> 23
-            1 -> 22
-            2 -> 21
-            3 -> 15
-            else -> 23
+            0 -> 24
+            1 -> 23
+            2 -> 22
+            3 -> 21
+            4 -> 15
+            else -> 24
         }
 }
