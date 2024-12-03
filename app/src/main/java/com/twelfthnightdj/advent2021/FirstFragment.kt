@@ -40,6 +40,7 @@ import advent2023.day18.Y23D18
 import advent2023.day19.Y23D19
 import advent2024.day01.Y24D01
 import advent2024.day02.Y24D02
+import advent2024.day03.Y24D03
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -220,7 +221,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
         when (daySelected) {
             1 -> Y24D01()
             2 -> Y24D02()
-//            3 -> Y24D03()
+            3 -> Y24D03()
 //            4 -> Y24D04()
 //            5 -> Y24D05()
 //            6 -> Y24D06()
@@ -244,13 +245,17 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
         day.yearId = yearSelected
         day.useTrialInput = binding.swTrialInput.isChecked
         day.setup()
+        val startA = System.currentTimeMillis()
         val partA = day.partA()
+        val totalA = System.currentTimeMillis() - startA
         day.reset()
+        val startB = System.currentTimeMillis()
         val partB = day.partB()
-        println("Part A: $partA")
-        println("Part B: $partB")
-        binding.tvAnswerA.text = "Part A: $partA"
-        binding.tvAnswerB.text = "Part B: $partB"
+        val totalB = System.currentTimeMillis() - startB
+        println("Part A: $partA.  Solved in $totalA ms")
+        println("Part B: $partB.  Solved in $totalB ms")
+        binding.tvAnswerA.text = "Part A: $partA. Solved in $totalA ms"
+        binding.tvAnswerB.text = "Part B: $partB. Solved in $totalB ms"
     }
 
     override fun onDestroyView() {
