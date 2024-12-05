@@ -79,6 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/use_trial_input"
+        android:checked="true"
         android:paddingEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
