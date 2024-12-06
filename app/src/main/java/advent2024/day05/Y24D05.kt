@@ -4,7 +4,7 @@ import com.twelfthnightdj.advent2021.AocDays
 
 class Y24D05 : AocDays() {
     override var dayId = 5
-    var rules = mutableSetOf<Pair<Int, Int>>()
+    var rules = mutableListOf<Pair<Int, Int>>()
     var updates = mutableListOf<List<Int>>()
 
     override fun setup() {
@@ -54,21 +54,27 @@ class Y24D05 : AocDays() {
         }
         wrongUpdates.forEach { wrongUpdate ->
             val newOrder = wrongUpdate.value.toMutableList()
+            val relevantRules = mutableListOf<Int>()
             rules.forEach { rule ->
-                if (newOrder.indexOf(rule.first) > newOrder.indexOf(rule.second)) {
-                    val firstIndex = newOrder.indexOf(rule.first)
-                    val secondIndex = newOrder.indexOf(rule.second)
-                    if (firstIndex > -1 && secondIndex > -1) {
-                        println("first index: $firstIndex, second Index: $secondIndex, max size: ${newOrder.size}")
-                        newOrder[secondIndex] = rule.first
-                        newOrder[firstIndex] = rule.second
-                    }
+                if (wrongUpdate.value.containsAll(rule.toList())) {
+                    relevantRules.add(rule.first)
                 }
             }
-            println("adding ${newOrder[newOrder.size/2]} becase of $newOrder")
-            total += newOrder[newOrder.size/2]
+            val answerUpdates = mutableListOf<Int>()
+            val sortedRules = relevantRules.sortByFrequency()
+            sortedRules.forEach { firstPage ->
+                if (newOrder.remove(firstPage)) {
+                    answerUpdates.add(firstPage)
+                }
+            }
+            answerUpdates.addAll(newOrder)
+
+            total += answerUpdates[answerUpdates.size/2]
         }
-        println("wrong updates count: ${wrongUpdates}")
         return total.toString()
+    }
+    fun <T> List<T>.sortByFrequency(): List<T> {
+        val frequencyMap = this.groupingBy { it }.eachCount()
+        return this.sortedByDescending { frequencyMap[it] }
     }
 }
