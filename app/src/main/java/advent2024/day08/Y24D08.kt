@@ -49,24 +49,15 @@ class Y24D08 : AocDays() {
     private fun findAntinodes(first: String, second: String) {
         val (x1, y1) = first.split("#").map { it.toInt() }
         val (x2, y2) = second.split("#").map { it.toInt() }
-        val dx = abs(x2 - x1)
-        val dy = abs(y2 - y1)
-        val leftX = min(x1, x2)
-        val rightX = max(x1, x2)
-        val x0 = leftX - dx
-        val x3 = rightX + dx
-        val y0 = if (leftX == x1) {
-            if (y1 < y2) y1 - dy else y1 + dy
-        } else {
-            // leftx == x2
-            if (y2 < y1) y2 - dy else y2 + dy
-        }
-        val y3 = if (leftX == x1) {
-            if (y1 < y2) y2 + dy else y2 - dy
-        } else {
-            // leftx == x2
-            if (y2 < y1) y1 + dy else y1 - dy
-        }
+
+        val dx =x2 - x1
+        val dy =y2 - y1
+
+        val x0 = x1 - dx
+        val y0 = y1 - dy
+
+        val x3 = x2 + dx
+        val y3 = y2 + dy
         println("finding antinodes for $first and $second")
         if (xRange.contains(x0) && yRange.contains(y0)) {
             println("     adding $x0#$y0")
