@@ -30,43 +30,79 @@ class Y24D08 : AocDays() {
     }
 
     override fun partA(): String {
-        println("grid count: ${grid.size}")
-        println("0s: ${grid.map { it.value }.count { it == '0' }}")
-        println("total antenna: ${antennas.size}")
-        println("grid count: ${grid.size}")
         antennas.forEach { antenna ->
             val antennaLocations = grid.filter { it.value == antenna }.map { it.key }
-            println("  ANTENNA locations for $antenna: $antennaLocations")
-            println("combos are: ${combinationsOfTwo(antennaLocations)}")
             combinationsOfTwo(antennaLocations).forEach { couple ->
-                findAntinodes(couple[0], couple[1])
+                findAntinodesA(couple[0], couple[1])
             }
         }
-        println("ANTINOCES: $antinodes")
         return antinodes.count().toString()
     }
 
-    private fun findAntinodes(first: String, second: String) {
+    private fun findAntinodesA(first: String, second: String) {
         val (x1, y1) = first.split("#").map { it.toInt() }
         val (x2, y2) = second.split("#").map { it.toInt() }
 
-        val dx =x2 - x1
-        val dy =y2 - y1
+        val dx = x2 - x1
+        val dy = y2 - y1
 
         val x0 = x1 - dx
         val y0 = y1 - dy
 
         val x3 = x2 + dx
         val y3 = y2 + dy
-        println("finding antinodes for $first and $second")
         if (xRange.contains(x0) && yRange.contains(y0)) {
-            println("     adding $x0#$y0")
             antinodes.add("$x0#$y0")
         }
         if (xRange.contains(x3) && yRange.contains(y3)) {
-            println("     adding $x3#$y3")
             antinodes.add("$x3#$y3")
         }
+    }
+
+    private fun findAntinodesB(first: String, second: String) {
+        val (x1, y1) = first.split("#").map { it.toInt() }
+        val (x2, y2) = second.split("#").map { it.toInt() }
+
+        val dx = x2 - x1
+        val dy = y2 - y1
+
+        var p = -1
+        while (true) {
+            p++
+            val newX = x1 - (p * dx)
+            val newY = y1 - (p * dy)
+            if (xRange.contains(newX) && yRange.contains(newY)) {
+                antinodes.add("$newX#$newY")
+            } else {
+                break
+            }
+        }
+        p = -1
+        while (true) {
+            p++
+            val newX = x2 + (p * dx)
+            val newY = y2 + (p * dy)
+            if (xRange.contains(newX) && yRange.contains(newY)) {
+                antinodes.add("$newX#$newY")
+            } else {
+                break
+            }
+        }
+    }
+
+    override fun reset() {
+        antinodes.clear()
+        super.reset()
+    }
+
+    override fun partB(): String {
+        antennas.forEach { antenna ->
+            val antennaLocations = grid.filter { it.value == antenna }.map { it.key }
+            combinationsOfTwo(antennaLocations).forEach { couple ->
+                findAntinodesB(couple[0], couple[1])
+            }
+        }
+        return antinodes.count().toString()
     }
 
     fun <T> combinationsOfTwo(list: List<T>): List<List<T>> {
