@@ -45,6 +45,7 @@ import advent2024.day04.Y24D04
 import advent2024.day05.Y24D05
 import advent2024.day06.Y24D06
 import advent2024.day08.Y24D08
+import advent2024.day09.Y24D09
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -88,6 +89,8 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var _binding: FragmentFirstBinding? = null
 
     private var daySelected = 0
+    private var testing = true
+    private var testingDay = 9
     private var yearSelected = 24
 
     // This property is only valid between onCreateView and
@@ -142,6 +145,10 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
             ).show()
         }
         binding.daySpinner.setSelection(min(Calendar.getInstance().get(DAY_OF_MONTH), 25), true)
+        if (testing) {
+            binding.daySpinner.setSelection(testingDay)
+            daySelected = testingDay
+        }
     }
 
     private fun y2015() =
@@ -231,7 +238,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
             6 -> Y24D06()
 //            7 -> Y24D07()
             8 -> Y24D08()
-//            9 -> Y24D09()
+            9 -> Y24D09()
 //            10 -> Y24D10()
 //            11 -> Y24D11()
 //            12 -> Y24D12()
