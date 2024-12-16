@@ -85,14 +85,14 @@ class Y24D09 : AocDays() {
     override fun partB(): String {
         println("files: $files")
         println("space: $spacers")
-        while(end.length < expectedLength) {
-//        while(frontIndex <= rearIndex) {
+//        while(end.length < expectedLength) {
+        while(frontIndex <= rearIndex) {
             repeat(f(frontIndex)) {
-//                println("f ($positionMultiplier) * $frontIndex")
+                println("f ($positionMultiplier) * $frontIndex")
                 end += frontIndex
-//                println("end: $end")
+                println("end: $end")
                 total += positionMultiplier * frontIndex
-                if (end.length >= expectedLength) return total.toString().also { println("end: $end") }
+//                if (end.length >= expectedLength) return total.toString().also { println("end: $end") }
                 positionMultiplier++
             }
             frontIndex++
@@ -100,11 +100,11 @@ class Y24D09 : AocDays() {
 //                println("s $count/${s(skipperIndex)}")
                 val popped = popFromRear()
                 if (popped == -1) return total.toString().also { println("end: $end") }
-//                println("r ($positionMultiplier) * $popped")
+                println("r ($positionMultiplier) * $popped")
                 end += popped
-//                println("end: $end")
+                println("end: $end")
                 total += positionMultiplier * popped
-                if (end.length >= expectedLength) return total.toString().also { println("end: $end") }
+//                if (end.length >= expectedLength) return total.toString().also { println("end: $end") }
                 positionMultiplier++
             }
             skipperIndex++
