@@ -47,6 +47,7 @@ import advent2024.day05.Y24D05
 import advent2024.day06.Y24D06
 import advent2024.day08.Y24D08
 import advent2024.day09.Y24D09
+import advent2024.day17.Y24D17
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -91,7 +92,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private var daySelected = 0
     private var testing = true
-    private var testingDay = 14
+    private var testingDay = 17
     private var yearSelected = 24
 
     // This property is only valid between onCreateView and
@@ -247,6 +248,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
             14 -> Y24D14()
 //            15 -> Y24D15()
 //            16 -> Y24D16()
+            17 -> Y24D17()
 //            18 -> Y24D18()
 //            19 -> Y24D19()
             else -> null
