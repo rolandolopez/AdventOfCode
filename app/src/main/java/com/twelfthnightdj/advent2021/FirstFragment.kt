@@ -38,6 +38,7 @@ import advent2023.day15.Y23D15
 import advent2023.day16.Y23D16
 import advent2023.day18.Y23D18
 import advent2023.day19.Y23D19
+import advent2024.day14.Y24D14
 import advent2024.day01.Y24D01
 import advent2024.day02.Y24D02
 import advent2024.day03.Y24D03
@@ -90,7 +91,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private var daySelected = 0
     private var testing = true
-    private var testingDay = 9
+    private var testingDay = 14
     private var yearSelected = 24
 
     // This property is only valid between onCreateView and
@@ -243,7 +244,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
 //            11 -> Y24D11()
 //            12 -> Y24D12()
 //            13 -> Y24D13()
-//            14 -> Y24D14()
+            14 -> Y24D14()
 //            15 -> Y24D15()
 //            16 -> Y24D16()
 //            18 -> Y24D18()
