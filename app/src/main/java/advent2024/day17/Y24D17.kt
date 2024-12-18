@@ -58,7 +58,9 @@ class Y24D17 : AocDays() {
         println("${currentCommand}: code, operand, combo: $opcode, $operand, $comboOp")
         when (opcode) {
             0 -> {
-                registerA = truncate( registerA / 2.0.pow(comboOp).toLong())
+                val denom = 2.0.pow(comboOp)
+                println(" $registerA/2^$comboOp = $registerA / $denom")
+                registerA = truncate( registerA / denom)
                 println("   register A: $registerA")
             }
             1 -> {
@@ -87,11 +89,15 @@ class Y24D17 : AocDays() {
                 println("outputting: $adding")
             }
             6 -> {
-                registerB = truncate( registerA / 2.0.pow(comboOp).toLong())
+                val denom = 2.0.pow(comboOp)
+                println(" $registerA/2^$comboOp = $registerA / $denom")
+                registerB = truncate( registerA / denom)
                 println("   register B: $registerB")
             }
             7 -> {
-                registerC = truncate( registerA / 2.0.pow(comboOp).toLong())
+                val denom = 2.0.pow(comboOp)
+                println(" $registerA/2^$comboOp = $registerA / $denom")
+                registerC = truncate( registerA / denom)
                 println("   register C: $registerC")
             }
         }
