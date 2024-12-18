@@ -5,6 +5,7 @@ import advent2015.day02.Y15D02
 import advent2015.day05.Y15D05
 import advent2015.day06.Y15D06
 import advent2015.day08.Y15D08
+import advent2018.day01.Y18D01
 import advent2022.day01.Y22D01
 import advent2022.day02.Y22D02
 import advent2022.day03.Y22D03
@@ -134,6 +135,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
         binding.buttonFirst.setOnClickListener {
             val day: AocDays? = when (yearSelected) {
                 15 -> y2015()
+                18 -> y2018()
                 21 -> y2021()
                 22 -> y2022()
                 23 -> y2023()
@@ -160,6 +162,11 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
             5 -> Y15D05()
             6 -> Y15D06()
             8 -> Y15D08()
+            else -> null
+        }
+    private fun y2018() =
+        when (daySelected) {
+            1 -> Y18D01()
             else -> null
         }
 
@@ -292,7 +299,8 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
             1 -> 23
             2 -> 22
             3 -> 21
-            4 -> 15
+            4 -> 18
+            5 -> 15
             else -> 24
         }
 }
