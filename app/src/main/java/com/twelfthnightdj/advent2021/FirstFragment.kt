@@ -9,6 +9,7 @@ import advent2018.day01.Y18D01
 import advent2018.day02.Y18D02
 import advent2018.day03.Y18D03
 import advent2018.day05.Y18D05
+import advent2018.day07.Y18D07
 import advent2022.day01.Y22D01
 import advent2022.day02.Y22D02
 import advent2022.day03.Y22D03
@@ -97,7 +98,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private var daySelected = 0
     private var testing = true
-    private var testingDay = 5
+    private var testingDay = 7
     private var testingYear = 4
     private var yearSelected = 24
 
@@ -177,6 +178,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
             2 -> Y18D02()
             3 -> Y18D03()
             5 -> Y18D05()
+            7 -> Y18D07()
             else -> null
         }
 
