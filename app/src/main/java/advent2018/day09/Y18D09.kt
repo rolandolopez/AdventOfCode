@@ -12,16 +12,48 @@ class Y18D09 : AocDays() {
         val parts = inputAsString.split(" ")
         numOfPlayers = parts[0].toInt()
         finalMarble = parts[parts.size - 2].toInt()
-        val playerScores: MutableList<Int> = mutableListOf()
+        val playerScores: MutableList<Long> = mutableListOf()
         println("numb of players: $numOfPlayers, lastMarble: $finalMarble")
         repeat(numOfPlayers) {
-            playerScores.add(0)
+            playerScores.add(0L)
         }
         val circle = Marbles()
 
         for (index in 3..finalMarble) {
             currentPlayerIndex = (currentPlayerIndex + 1) % numOfPlayers
-            if (index % 23 == 0) {
+            if (index % 23L == 0L) {
+                var score = playerScores[currentPlayerIndex]
+                score += index
+                circle.moveCounterClockwise(7)
+                score += circle.removeCurrentMarble()
+                playerScores[currentPlayerIndex] = score
+            } else {
+                circle.moveClockwise()
+                circle.insertAfterCurrentMarble(index)
+            }
+        }
+        return playerScores.maxOrNull()!!.toString()
+
+    }
+
+    override fun reset() {
+        currentPlayerIndex = 1
+    }
+
+    override fun partB(): String {
+        val parts = inputAsString.split(" ")
+        numOfPlayers = parts[0].toInt()
+        finalMarble = parts[parts.size - 2].toInt() * 100
+        val playerScores: MutableList<Long> = mutableListOf()
+        println("numb of players: $numOfPlayers, lastMarble: $finalMarble")
+        repeat(numOfPlayers) {
+            playerScores.add(0L)
+        }
+        val circle = Marbles()
+
+        for (index in 3..finalMarble) {
+            currentPlayerIndex = (currentPlayerIndex + 1) % numOfPlayers
+            if (index % 23L == 0L) {
                 var score = playerScores[currentPlayerIndex]
                 score += index
                 circle.moveCounterClockwise(7)
