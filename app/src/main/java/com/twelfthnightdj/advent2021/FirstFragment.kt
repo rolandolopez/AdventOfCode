@@ -88,6 +88,7 @@ import advent2021.day18.Y21D18
 import advent2021.day20.Y21D20
 import advent2021.day21.Y21D21
 import advent2021.day22.Y21D22
+import advent2025.Y25D01
 import java.lang.Integer.min
 import java.util.*
 import java.util.Calendar.DAY_OF_MONTH
@@ -102,7 +103,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var daySelected = 0
     private var testing = true
     private var testingDay = 10
-    private var testingYear = 4
+    private var testingYear = 5
     private var yearSelected = 24
 
     // This property is only valid between onCreateView and
@@ -149,6 +150,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 22 -> y2022()
                 23 -> y2023()
                 24 -> y2024()
+                25 -> y2025()
                 else -> null
             }
             day?.let { runDay(it) } ?: Toast.makeText(
@@ -279,6 +281,12 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
             else -> null
         }
 
+    private fun y2025() =
+        when (daySelected) {
+            1 -> Y25D01()
+            else -> null
+        }
+
     @SuppressLint("SetTextI18n")
     private fun runDay(day: AocDays) {
         day.yearId = yearSelected
@@ -313,12 +321,13 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private fun year(pos: Int) =
         when (pos) {
-            0 -> 24
-            1 -> 23
-            2 -> 22
-            3 -> 21
-            4 -> 18
-            5 -> 15
+            0 -> 25
+            1 -> 24
+            2 -> 23
+            3 -> 22
+            4 -> 21
+            5 -> 18
+            6 -> 15
             else -> 24
         }
 }
