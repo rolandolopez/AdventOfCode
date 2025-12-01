@@ -24,4 +24,35 @@ class Y25D01 : AocDays() {
         }
         return targetCount.toString()
     }
+
+    override fun reset() {
+        targetCount = 0
+        current = 50
+    }
+
+    override fun partB(): String {
+        input.forEach { str ->
+            val direction = str[0]
+            val steps = str.substring(1).toInt()
+            targetCount += steps / highPoint
+            val delta = steps % highPoint
+            if (direction == 'L') {
+                if (current == 0) {
+                    targetCount--
+                }
+                current -= delta
+            } else {
+                current += delta
+            }
+            if (current !in 0..highPoint) {
+                targetCount++
+                current = ((current + add) % highPoint)
+            }
+            if (current == 0 || current == 100) {
+                targetCount++
+                current = 0
+            }
+        }
+        return targetCount.toString()
+    }
 }
