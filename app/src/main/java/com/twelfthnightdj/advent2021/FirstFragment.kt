@@ -101,7 +101,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var _binding: FragmentFirstBinding? = null
 
     private var daySelected = 0
-    private var testing = true
+    private var testing = false
     private var testingDay = 10
     private var testingYear = 5
     private var yearSelected = 24
