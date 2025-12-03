@@ -6,13 +6,33 @@ class Y25D03 : AocDays() {
     override var dayId = 3
 
     override fun partA(): String {
-        var total = 0
+        var total = 0L
         input.forEach { bank ->
             val each = bank.map { it.toString().toInt() }
-            val tensIndex = getMaxIndex(each, 0, each.size - 2)
-            val onesIndex = getMaxIndex(each,tensIndex + 1)
-            val largest = (each[tensIndex] * 10) + each[onesIndex]
-            total += largest
+            var runner = ""
+            var startingIndex = 0
+            for (batteryCount in 2 downTo 1) {
+                val maxIndex = getMaxIndex(each, startingIndex, each.size - batteryCount)
+                runner += each[maxIndex].toString()
+                startingIndex = maxIndex + 1
+            }
+            total += runner.toLong()
+        }
+        return total.toString()
+    }
+
+    override fun partB(): String {
+        var total = 0L
+        input.forEach { bank ->
+            val each = bank.map { it.toString().toInt() }
+            var runner = ""
+            var startingIndex = 0
+            for (batteryCount in 12 downTo 1) {
+                val maxIndex = getMaxIndex(each, startingIndex, each.size - batteryCount)
+                runner += each[maxIndex].toString()
+                startingIndex = maxIndex + 1
+            }
+            total += runner.toLong()
         }
         return total.toString()
     }
