@@ -90,6 +90,7 @@ import advent2021.day21.Y21D21
 import advent2021.day22.Y21D22
 import advent2025.Y25D01
 import advent2025.Y25D02
+import advent2025.Y25D03
 import java.lang.Integer.min
 import java.util.*
 import java.util.Calendar.DAY_OF_MONTH
@@ -286,6 +287,7 @@ class FirstFragment : Fragment(), AdapterView.OnItemSelectedListener {
         when (daySelected) {
             1 -> Y25D01()
             2 -> Y25D02()
+            3 -> Y25D03()
             else -> null
         }
 
