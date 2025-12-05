@@ -19,16 +19,6 @@ class Y25D04 : AocDays() {
         super.setup()
     }
 
-    private fun printGrid() {
-        for (y in 0 until yMax) {
-            var l = ""
-            for (x in 0 until xMax) {
-                l += (grid["$x#$y"]).toString()
-            }
-            println(l)
-        }
-    }
-
     override fun partA(): String {
         var totalCount = 0
         for (x in 0 until xMax) {
@@ -42,6 +32,27 @@ class Y25D04 : AocDays() {
         }
         return totalCount.toString()
     }
+
+    override fun partB(): String {
+        var totalCount = 0
+        var thisTime: Int
+        do {
+            thisTime = 0
+            for (x in 0 until xMax) {
+                for (y in 0 until yMax) {
+                    if (grid["$x#$y"] != '.') {
+                        if (totalNeighbors(x, y) < 4) {
+                            totalCount++
+                            thisTime++
+                            grid["$x#$y"] = '.'
+                        }
+                    }
+                }
+            }
+        } while (thisTime != 0)
+        return totalCount.toString()
+    }
+
     private fun totalNeighbors(x: Int, y:Int): Int {
         var total = 0
         for (dx in -1..1) {
